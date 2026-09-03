@@ -10,14 +10,17 @@
 scraper/
   config.py        # 対象ショップ一覧(shops)の定義
   robots.py         # 実行時にrobots.txtを取得し、アクセス可否を判定
-  http_client.py     # 直列アクセス・2〜3秒間隔のレート制限クライアント
-  parsers/           # ショップ別パーサー(base.pyに共通ユーティリティ)
+  http_client.py     # 直列アクセス・2〜3秒間隔のレート制限クライアント + 文字コード判定
+  parsers/           # ショップ別パーサー(base.pyに共通ユーティリティ、ec_common.pyは複数ショップ共通)
   output.py          # data/shops.json, data/card_price.json への書き出し
-  runner.py          # 全ショップを順に処理するエントリポイント
-.github/workflows/scrape.yml  # 定期実行 + 差分コミットpush
+  runner.py          # 全ショップを順に処理するエントリポイント(50万円未満を除外)
+  debug_fetch.py     # 各ショップの生HTMLをdebug_html/に保存するデバッグ用スクリプト
+.github/workflows/
+  scrape.yml            # 定期実行 + 差分コミットpush(本番)
+  debug_fetch_html.yml   # 手動実行のみ。生HTMLをartifact化 + リポジトリにも直接コミット
 data/
   shops.json          # ショップ一覧(実行のたびに再生成)
-  card_price.json      # 価格データ(実行のたびに最新スナップショットで上書き)
+  card_price.json      # 価格データ(実行のたびに最新スナップショットで上書き。50万円以上のみ)
 ```
 
 ## 実行方法
@@ -44,26 +47,28 @@ GitHub Actions (`scrape.yml`) は毎日1回自動実行し、`data/*.json` に�
   必要な場合がある)
 - User-Agent は `PokecaPriceCompareBot/1.0` を名乗る(個人情報は含めない)
 
-## 既知の制限・要検証事項(重要)
+## 開発環境の制約
 
-このパイプラインは、開発環境(Claude Code のネットワークegressポリシー)
-の制約により、**対象ショップサイトへの実アクセスを一度も行わずに実装した**。
-そのため以下は未検証:
+このセッション(Claude Code)自体のネットワークegressポリシーが対象
+ショップドメインを直接ブロックするため、実サイトへの疎通確認はここでは
+できない。そのため `debug_fetch_html.yml`(手動実行、生HTMLをリポジトリの
+`debug_html/` に直接コミット)でGitHub Actions側から実HTMLを取得し、その
+内容を見ながら `scraper/parsers/*.py` を実サイト構造に合わせて実装する
+運用にしている。
 
-- 各ショップの実際のHTML構造(遊々亭以外は`generic_text_list_parse`という
-  汎用フォールバックパーサーを暫定使用)
-- 一部ショップのURL(`scraper/config.py` 内の `TODO要検証` / `TODO要確認`
-  コメント参照): 遊々亭の一覧URL、カードラッシュの販売URL、カードラボの
-  買取URLの有無、晴れる屋2の買取URL・売URL、ニンニンの売URLなど
-- 各ショップの `robots.txt` の実際の内容(実行時チェックのロジックは
-  実装済みだが、動作は未確認)
+## 現状の検証状況(2026-09-03時点)
 
-引き継ぎ資料の要件どおり、**最初の数回のGitHub Actions実行結果は人間側で
-確認**し、`data/card_price.json` の中身とActionsログのサマリーを見ながら
-`scraper/config.py` のURLと `scraper/parsers/*.py` の各パーサーを
-実サイト構造に合わせて調整していく想定。
+`scraper/config.py` の各ショップのコメントに詳細と根拠を記載している。
+
+- 実データ抽出できているショップ: トレトク(329件)、フルコンプ秋葉原店
+  (5,267件)、カードラッシュ(sellのみ84件)、カードラボ(48件)
+- 未解決: 遊々亭(403 Forbidden)、晴れる屋2(トップページのまま、要URL
+  特定)、買取コレクター(実HTML構造未確認)、ニンニン(カテゴリindex
+  ページのため個別サブページ巡回への変更が必要)
 
 ## 高額カードのしきい値
 
-`scraper/config.py` の `HIGH_VALUE_THRESHOLD`(50万円)。現状は全件を
-収集した上でサマリー内で高額カード件数を集計する形にしている。
+`scraper/config.py` の `HIGH_VALUE_THRESHOLD`(50万円)。買取価格・売値
+価格のいずれかがこの金額**以上**(上限なし)のレコードのみを
+`data/card_price.json` に出力する。しきい値未満のレコードは収集はする
+ものの、最終出力からは除外される(`runner.py` でフィルタ)。
