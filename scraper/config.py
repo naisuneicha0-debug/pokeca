@@ -73,11 +73,23 @@ SHOPS: List[ShopConfig] = [
         shop_name="カードラッシュ",
         # buy_url(cardrush.media)は403 Forbidden(2026-09-03確認、ヘッダー
         # 改善後も変化なし)。bot対策による拒否と判断し除外(None化)。
+        # 2026-09-03 WebSearchで、同じcardrush-pokemon.jpドメイン内に
+        # 「買取リスト」ページ群(/page/38,39,40,41,42,45)があることを発見。
+        # sell_urlと同ドメイン・同ECテンプレートの可能性が高いため
+        # buy_urlsとして追加(実データ抽出できるかはdebug_fetch後に要確認)。
         # sell_url(トップページ)は取得できており、カードラボと同じEC
         # テンプレート用の専用パーサー(ec_common)で実データ抽出を確認済み。
         # ただしトップページのため一部しか拾えておらず、本来の全カード
         # 一覧ページのURLへの差し替えが望ましい。
         buy_url=None,
+        buy_urls=[
+            "https://www.cardrush-pokemon.jp/page/38",
+            "https://www.cardrush-pokemon.jp/page/39",
+            "https://www.cardrush-pokemon.jp/page/40",
+            "https://www.cardrush-pokemon.jp/page/41",
+            "https://www.cardrush-pokemon.jp/page/42",
+            "https://www.cardrush-pokemon.jp/page/45",
+        ],
         sell_url="https://www.cardrush-pokemon.jp/",  # TODO要検証: トップページの一部のみ
         shop_type="both",
         parser="cardrush",
@@ -85,11 +97,15 @@ SHOPS: List[ShopConfig] = [
     ShopConfig(
         shop_id="c_labo",
         shop_name="カードラボ",
-        buy_url=None,  # TODO要確認: 買取価格ページが別途存在するか要調査
+        # 2026-09-03 WebSearchで、通販サイト(c-labo-online.jp)とは別ドメインの
+        # 買取専用サイト(c-labo-kaitori.jp)を発見。ポケカ買取ページのURLを
+        # buy_urlに設定(通販サイトと同じECテンプレートかは未検証。debug_fetch
+        # 後に専用パーサーへの切り替えを検討)。
+        buy_url="https://www.c-labo-kaitori.jp/page/10",
         # sell_urlは専用パーサー(ec_common、カードラッシュと共通)で実データ
         # 抽出できることを確認済み(2026-09-03)。
         sell_url="https://www.c-labo-online.jp/product-group/2413",
-        shop_type="sell_only",
+        shop_type="both",
         parser="c_labo",
     ),
     ShopConfig(
@@ -165,6 +181,53 @@ SHOPS: List[ShopConfig] = [
         sell_url=None,
         shop_type="buy_only",
         parser="suruga_ya",
+    ),
+    ShopConfig(
+        shop_id="dorasuta",
+        shop_name="ドラゴンスター(ネット買取)",
+        # WebSearchで発見(2026-09-03)。買取専用ドメイン(buy.dorasuta.jp)で
+        # ポケモンカードのシリーズ別買取価格表を公開している模様。この
+        # セッションからは対象ショップドメインへのegressがブロックされて
+        # おりHTML構造を直接確認できないため、debug_fetch_html.ymlでの
+        # 実HTML取得結果を見てから専用パーサーに置き換える前提で、まずは
+        # 汎用フォールバックパーサーで追加する。
+        buy_url="https://buy.dorasuta.jp/pokemon-card/series-list",
+        sell_url=None,
+        shop_type="buy_only",
+        parser="dorasuta",
+    ),
+    ShopConfig(
+        shop_id="ka_nabell",
+        shop_name="カーナベル",
+        # WebSearchで発見(2026-09-03)。TCG買取サイトでポケモンカードの
+        # 買取価格検索ページを公開。実HTML構造は未検証(debug_fetch待ち)。
+        buy_url="https://www.ka-nabell.com/ec/buy/pokemon",
+        sell_url=None,
+        shop_type="buy_only",
+        parser="ka_nabell",
+    ),
+    ShopConfig(
+        shop_id="hbst",
+        shop_name="ホビーステーション",
+        # WebSearchで発見(2026-09-03)。「高価買取リスト」ページ。ポケモン
+        # カード以外のジャンルも同一ページに含まれる可能性があり、実HTML
+        # 確認後にポケカのみを抽出するロジックへ調整が必要になりうる。
+        buy_url="https://www.hbst.net/purchase/",
+        sell_url=None,
+        shop_type="buy_only",
+        parser="hbst",
+    ),
+    ShopConfig(
+        shop_id="furuichi",
+        shop_name="古本市場(ふるいち)",
+        # WebSearchで発見(2026-09-03)。ポケモンカードゲーム専用の高価買取
+        # 情報ページ。掲載額は「買取上限金額」の可能性があり(要実HTML確認)、
+        # その場合はHIGH_VALUE_THRESHOLDと相性が良い(店舗のみ買取・ネット
+        # 買取非対応だが価格表自体はWeb公開されている)。
+        buy_url="https://www.furu1.net/kaitori/sell_toreca/pk",
+        sell_url=None,
+        shop_type="buy_only",
+        parser="furuichi",
     ),
     ShopConfig(
         shop_id="netoff_moetaku",
