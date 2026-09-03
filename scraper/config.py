@@ -95,16 +95,17 @@ SHOPS: List[ShopConfig] = [
     ShopConfig(
         shop_id="hareruya2",
         shop_name="晴れる屋2",
-        # buying-listページ(Playwrightでレンダリング確認済み、2026-09-03)の
-        # JS内に全商品データの取得元として
+        # buying-listページのJS内に全商品データの取得元として
         # https://api.corp.hareruyamtg.com/user_data/hareruya2/json/products_all.json
-        # という公開JSON APIのURLが埋め込まれているのを発見した。全8,785件
-        # (確認時点)を1回のリクエストで取得できるため、Playwright(render_js)
-        # ではなくrequestsで直接このJSONを取得する方式に切り替えた。
-        # JSON構造は未確認のため、専用パーサーは実際のレスポンスを見てから実装する。
-        buy_url="https://api.corp.hareruyamtg.com/user_data/hareruya2/json/products_all.json",  # TODO要検証: JSON構造を確認しパーサー実装
-        sell_url=None,  # TODO要確認: 販売価格ページのURLが不明
-        shop_type="buy_only",
+        # という公開JSON APIのURLが埋め込まれているのを発見した。実際に取得・
+        # パース確認済み(2026-09-03): {"count": int, "products": [...]}形式で、
+        # 各productにbuy_price/sell_priceが両方含まれる。22,645件中43件が
+        # 50万円以上。1回のリクエストで買取・売値どちらも取れるため、
+        # sell_urlは設定せずbuy_url一本(パーサー内でdirectionを無視し両方
+        # 出力)にしている。
+        buy_url="https://api.corp.hareruyamtg.com/user_data/hareruya2/json/products_all.json",
+        sell_url=None,
+        shop_type="both",
         parser="hareruya2",
     ),
     ShopConfig(

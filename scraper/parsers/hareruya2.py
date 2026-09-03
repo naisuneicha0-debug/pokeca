@@ -1,67 +1,64 @@
-"""晴れる屋2用パーサー(買取価格)。
+"""晴れる屋2用パーサー。
 
-以下は、旧URL(buying-listページ、Playwrightでレンダリング後のHTML)向けに
-実装したロジック。ページ内JSに全商品データの取得元として公開JSON API
+buying-listページ内のJSに埋め込まれていた公開JSON API
 (https://api.corp.hareruyamtg.com/user_data/hareruya2/json/products_all.json)
-が埋め込まれているのを発見したため、config.pyのbuy_urlはそちらに切り替え
-済み。JSON構造はまだ未確認のため、このパーサーはまだJSON向けに書き換えて
-いない(現状は非HTML入力に対して黙って空リストを返すだけ)。次のステップは
-実際のJSONレスポンスを確認し、このパーサーをJSON用に全面的に書き換えること。
+から取得したJSONをそのままパースする(2026-09-03確認)。
 
-以下のHTML用ロジックはページ内リンク経由で再度使う可能性を考え参考として残す:
-`<li><div class="product-title">名前(レアリティ){エネルギー}〈printed〉[set]
-</div>...<span class="buy">¥価格</span></li>` という構造の商品リスト
-(50件/ページ、確認時点で全8,785件のページネーションあり)。
+レスポンス形式: {"count": <int>, "products": [<product>, ...]}
+各productには buy_price / sell_price が両方(整数、0=取り扱いなしの意味で
+使われている)含まれており、1回のリクエストで買取・売値どちらも取れる。
+そのためdirection引数は無視して両方のフィールドをそのまま使う。
+
+titleフィールド例: "AZ(CP){サポート}〈138/171〉[XY/171]"
 """
 from __future__ import annotations
 
+import json
 import re
-from typing import List, Dict, Optional, Tuple
+from typing import List, Dict, Optional
 
-from bs4 import BeautifulSoup
+from .base import make_record, now_iso
 
-from .base import make_record, now_iso, parse_price
-
-TITLE_RE = re.compile(
-    r"^(?P<name>.+?)\((?P<rarity>[^)]+)\)(?:\{[^}]*\})?"
-    r"(?:〈(?P<printed>[^〉]+)〉)?(?:\[(?P<set>[^\]]+)\])?$"
-)
+TITLE_RE = re.compile(r"^(?P<name>.+?)\((?P<rarity>[^)]*)\)")
 
 
-def _parse_title(raw: str) -> Tuple[str, Optional[str], Optional[str]]:
-    raw = raw.strip()
-    m = TITLE_RE.match(raw)
+def _parse_title(title: str) -> tuple[str, Optional[str]]:
+    m = TITLE_RE.match(title.strip())
     if not m:
-        return raw, None, None
+        return title.strip(), None
     name = m.group("name").strip()
-    rarity = m.group("rarity")
-    printed = m.group("printed")
-    set_seg = m.group("set")
-    set_code = f"{set_seg}-{printed}" if set_seg and printed else (printed or set_seg)
-    return name, rarity, set_code
+    rarity = m.group("rarity").strip() or None
+    return name, rarity
 
 
 def parse(html: str, source_site: str, direction: str) -> List[Dict]:
-    soup = BeautifulSoup(html, "lxml")
+    try:
+        data = json.loads(html)
+    except json.JSONDecodeError:
+        return []
+
+    products = data.get("products", [])
     fetched_at = now_iso()
     records: List[Dict] = []
 
-    for li in soup.select("ul#productList > li"):
-        title_el = li.select_one(".product-title")
-        price_el = li.select_one(".price-row .buy")
-        if not title_el or not price_el:
-            continue
-
-        price = parse_price(price_el.get_text(" ", strip=True).replace("¥", "") + "円")
-        if price is None:
-            continue
-
-        name, rarity, set_code = _parse_title(title_el.get_text(" ", strip=True))
+    for p in products:
+        title = p.get("title") or ""
+        name, rarity = _parse_title(title)
         if not name:
             continue
 
-        buy_price = price if direction == "buy" else None
-        sell_price = price if direction == "sell" else None
+        collection_number = p.get("collection_number")
+        set_name = p.get("set_name")
+        if collection_number and collection_number != "-":
+            set_code = f"{set_name}-{collection_number}" if set_name else collection_number
+        else:
+            set_code = set_name
+
+        buy_price = p.get("buy_price") or None
+        sell_price = p.get("sell_price") or None
+        if buy_price is None and sell_price is None:
+            continue
+
         records.append(make_record(name, set_code, rarity, buy_price, sell_price, source_site, fetched_at))
 
     return records
