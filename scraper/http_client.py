@@ -38,7 +38,13 @@ MAX_DELAY_SEC = 3.0
 class RateLimitedClient:
     def __init__(self) -> None:
         self.session = requests.Session()
-        self.session.headers.update({"User-Agent": USER_AGENT})
+        self.session.headers.update(
+            {
+                "User-Agent": USER_AGENT,
+                "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+                "Accept-Language": "ja,en-US;q=0.9,en;q=0.8",
+            }
+        )
         self._last_request_at = 0.0
 
     def get(self, url: str, **kwargs) -> requests.Response:

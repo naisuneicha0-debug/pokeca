@@ -88,10 +88,12 @@ SHOPS: List[ShopConfig] = [
     ShopConfig(
         shop_id="hareruya2",
         shop_name="晴れる屋2",
-        # 旧URL(トップページ)は買取価格の一覧ではないことを実HTMLで確認済み
-        # (2026-09-03)。Web検索で見つけた買取価格表の専用ページに差し替え。
-        # 実構造はまだ未確認のためTODO残す。
-        buy_url="https://www.hareruya2.com/en/pages/buying",  # TODO要検証
+        # Web検索で見つけた買取価格表の専用ページ(タイトルは正しく一致)。
+        # ただし実HTMLに<table>等の価格データが含まれておらず、JSで動的に
+        # 描画される構成と判明(2026-09-03)。requestsベースのスクレイピング
+        # では取得不可。headless browser(Playwright等)導入が必要で今回は
+        # 未対応。
+        buy_url="https://www.hareruya2.com/en/pages/buying",  # TODO要検証: JS動的レンダリング
         sell_url=None,  # TODO要確認: 販売価格ページのURLが不明
         shop_type="buy_only",
         parser="hareruya2",
@@ -119,10 +121,12 @@ SHOPS: List[ShopConfig] = [
     ShopConfig(
         shop_id="kaitori_collector",
         shop_name="買取コレクター",
-        # 初回scrape.yml実行では79件取得できたが中身は「買取価格」等の見出し
-        # ラベルを拾っただけでカード名になっていなかった。debug_fetch実行時は
-        # 接続タイムアウトで再現できず、実HTML構造が未確認のまま。要再調査。
-        buy_url="https://kaitoricollector.com/card-kind/pokemoncard/price/",  # TODO要検証
+        # 実HTML確認済み(2026-09-03)。ただしこのページは全カード網羅の
+        # 価格表ではなく、ジャンル横断(玩具・フィギュア等含む)の「買取実績
+        # ハイライト」カルーセルだった。リンク先が/card-kind/pokemoncard/の
+        # ものだけに絞る専用パーサーで、実在するポケカの買取実績9件を確認。
+        # 件数は少ないが実データ(価格非公開の実績は除外済み)。
+        buy_url="https://kaitoricollector.com/card-kind/pokemoncard/price/",
         sell_url=None,
         shop_type="buy_only",
         parser="kaitori_collector",
@@ -131,8 +135,10 @@ SHOPS: List[ShopConfig] = [
         shop_id="nin_nin",
         shop_name="ニンニン",
         # indexページ(buy_url)はカテゴリへのリンク一覧に過ぎないことを実HTMLで
-        # 確認済み(2026-09-03)。実データはbuy_urlsに列挙した各カテゴリの
-        # サブページ側にある。buy_urlはshops.json表示用の代表URLとして残す。
+        # 確認済み(2026-09-03)。buy_urlsに列挙した各カテゴリのサブページも
+        # 確認したが、価格情報はテキストではなく買取表を撮影した画像
+        # (JPG/PNG)として掲載されており、通常のスクレイピングでは取得
+        # 不可能と判明。OCR実装が必要なため今回は未対応。
         buy_url="https://nin-nin-pokeka.jp/kakaku/tcg/pokemon/",
         buy_urls=_NIN_NIN_CATEGORY_URLS,
         sell_url=None,
@@ -142,10 +148,9 @@ SHOPS: List[ShopConfig] = [
     ShopConfig(
         shop_id="suruga_ya",
         shop_name="駿河屋",
-        # Web検索で追加(2026-09-03)。ポケモンカードゲームの買取価格一覧
-        # ページ。実HTML構造は未確認。ページネーションがある可能性が高く、
-        # 1ページ目のみだと高額カードを取りこぼす懸念があるためTODO残す。
-        buy_url="https://www.suruga-ya.jp/kaitori/search_buy?category=501080033&search_word=",  # TODO要検証・ページネーション要確認
+        # Web検索で追加(2026-09-03)。403 Forbiddenで拒否される
+        # (2026-09-03確認)。bot対策の可能性が高く、実HTML未確認。
+        buy_url="https://www.suruga-ya.jp/kaitori/search_buy?category=501080033&search_word=",  # TODO要検証
         sell_url=None,
         shop_type="buy_only",
         parser="suruga_ya",
@@ -153,9 +158,12 @@ SHOPS: List[ShopConfig] = [
     ShopConfig(
         shop_id="netoff_moetaku",
         shop_name="ネットオフ もえたく!",
-        # Web検索で追加(2026-09-03)。ポケモンカード買取(宅配買取)の
-        # 専用ブランド。実HTML構造は未確認。
-        buy_url="https://www.netoff.co.jp/moetaku/tcg/pokemon_card/",  # TODO要検証
+        # Web検索で追加(2026-09-03)。当初のbuy_url(ジャンルのランディング
+        # ページ)は個別カードの価格ではなく「買取価格の月次平均推移」しか
+        # 載っておらず、実データ収集には使えないと判明。検索結果ページ
+        # (ky=ポケットモンスター パラメータ)に差し替えたが、この新URLは
+        # このセッションのegress制限でまだ疎通確認できていない。
+        buy_url="https://www.netoff.co.jp/figure/purchase/?ky=%E3%83%9D%E3%82%B1%E3%83%83%E3%83%88%E3%83%A2%E3%83%B3%E3%82%B9%E3%82%BF%E3%83%BC&ct=%E3%83%88%E3%83%AC%E3%82%AB&mk=%E3%83%9D%E3%82%B1%E3%83%A2%E3%83%B3%E3%82%AB%E3%83%BC%E3%83%89%E3%82%B2%E3%83%BC%E3%83%A0",  # TODO要検証
         sell_url=None,
         shop_type="buy_only",
         parser="netoff_moetaku",
