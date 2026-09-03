@@ -2,14 +2,14 @@
   {
     "shop_id": "yuyu_tei",
     "shop_name": "遊々亭",
-    "buy_url": "https://yuyu-tei.jp/buy/poc/list",
-    "sell_url": "https://yuyu-tei.jp/sell/poc/list",
+    "buy_url": null,
+    "sell_url": null,
     "shop_type": "both"
   },
   {
     "shop_id": "cardrush",
     "shop_name": "カードラッシュ",
-    "buy_url": "https://cardrush.media/pokemon/buying_prices",
+    "buy_url": null,
     "sell_url": "https://www.cardrush-pokemon.jp/",
     "shop_type": "both"
   },
@@ -23,7 +23,7 @@
   {
     "shop_id": "hareruya2",
     "shop_name": "晴れる屋2",
-    "buy_url": "https://www.hareruya2.com/",
+    "buy_url": "https://www.hareruya2.com/en/pages/buying",
     "sell_url": null,
     "shop_type": "buy_only"
   },
@@ -52,6 +52,20 @@
     "shop_id": "nin_nin",
     "shop_name": "ニンニン",
     "buy_url": "https://nin-nin-pokeka.jp/kakaku/tcg/pokemon/",
+    "sell_url": null,
+    "shop_type": "buy_only"
+  },
+  {
+    "shop_id": "suruga_ya",
+    "shop_name": "駿河屋",
+    "buy_url": null,
+    "sell_url": null,
+    "shop_type": "buy_only"
+  },
+  {
+    "shop_id": "netoff_moetaku",
+    "shop_name": "ネットオフ もえたく!",
+    "buy_url": "https://www.netoff.co.jp/figure/purchase/?ky=%E3%83%9D%E3%82%B1%E3%83%83%E3%83%88%E3%83%A2%E3%83%B3%E3%82%B9%E3%82%BF%E3%83%BC&ct=%E3%83%88%E3%83%AC%E3%82%AB&mk=%E3%83%9D%E3%82%B1%E3%83%A2%E3%83%B3%E3%82%AB%E3%83%BC%E3%83%89%E3%82%B2%E3%83%BC%E3%83%A0",
     "sell_url": null,
     "shop_type": "buy_only"
   }
