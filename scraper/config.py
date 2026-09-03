@@ -74,21 +74,21 @@ SHOPS: List[ShopConfig] = [
         # buy_url(cardrush.media)は403 Forbidden(2026-09-03確認、ヘッダー
         # 改善後も変化なし)。bot対策による拒否と判断し除外(None化)。
         # 2026-09-03 WebSearchで、同じcardrush-pokemon.jpドメイン内に
-        # 「買取リスト」ページ群(/page/38,39,40,41,42,45)があることを発見。
-        # sell_urlと同ドメイン・同ECテンプレートの可能性が高いため
-        # buy_urlsとして追加(実データ抽出できるかはdebug_fetch後に要確認)。
-        # sell_url(トップページ)は取得できており、カードラボと同じEC
-        # テンプレート用の専用パーサー(ec_common)で実データ抽出を確認済み。
-        # ただしトップページのため一部しか拾えておらず、本来の全カード
-        # 一覧ページのURLへの差し替えが望ましい。
+        # 「買取リスト」ページ群(/page/38,39,40,41,42,45)を発見。debug_fetch
+        # で実HTMLを確認したところ、価格表自体はページ内に無く、Googleスプレッド
+        # シートの公開ビュー(pubhtml)をiframe埋め込みしている構造だった
+        # (/page/40のみ注意事項のみで対象外)。iframeのsrc URLを直接取得すれば
+        # 静的HTMLのテーブルとして取れる可能性が高いため、そちらをbuy_urlsに
+        # 設定(gidはページごとに異なるシートを指しているため各々列挙。テーブル
+        # 構造・実データ抽出可否は次回debug_fetchで要確認、専用パーサー未実装
+        # のため暫定的にcardrushパーサー(ec_common)のまま)。
         buy_url=None,
         buy_urls=[
-            "https://www.cardrush-pokemon.jp/page/38",
-            "https://www.cardrush-pokemon.jp/page/39",
-            "https://www.cardrush-pokemon.jp/page/40",
-            "https://www.cardrush-pokemon.jp/page/41",
-            "https://www.cardrush-pokemon.jp/page/42",
-            "https://www.cardrush-pokemon.jp/page/45",
+            "https://docs.google.com/spreadsheets/d/e/2PACX-1vQT3Q9qDbZUpnP3_WH2I5qw8O-U_PqXVhhoIzH2o-tSzeDND9FTuoGKbZiNHTbrzTgKAUA2_SvXFh_2/pubhtml?gid=159569114&single=true&widget=true&headers=false",
+            "https://docs.google.com/spreadsheets/d/e/2PACX-1vQT3Q9qDbZUpnP3_WH2I5qw8O-U_PqXVhhoIzH2o-tSzeDND9FTuoGKbZiNHTbrzTgKAUA2_SvXFh_2/pubhtml?gid=1490875147&single=true&widget=true&headers=false",
+            "https://docs.google.com/spreadsheets/d/e/2PACX-1vQT3Q9qDbZUpnP3_WH2I5qw8O-U_PqXVhhoIzH2o-tSzeDND9FTuoGKbZiNHTbrzTgKAUA2_SvXFh_2/pubhtml?gid=2119163373&single=true&widget=true&headers=false",
+            "https://docs.google.com/spreadsheets/d/e/2PACX-1vQT3Q9qDbZUpnP3_WH2I5qw8O-U_PqXVhhoIzH2o-tSzeDND9FTuoGKbZiNHTbrzTgKAUA2_SvXFh_2/pubhtml?gid=1990744902&single=true&widget=true&headers=false",
+            "https://docs.google.com/spreadsheets/d/e/2PACX-1vQT3Q9qDbZUpnP3_WH2I5qw8O-U_PqXVhhoIzH2o-tSzeDND9FTuoGKbZiNHTbrzTgKAUA2_SvXFh_2/pubhtml?gid=1640929383&single=true&widget=true&headers=false",
         ],
         sell_url="https://www.cardrush-pokemon.jp/",  # TODO要検証: トップページの一部のみ
         shop_type="both",
@@ -98,10 +98,12 @@ SHOPS: List[ShopConfig] = [
         shop_id="c_labo",
         shop_name="カードラボ",
         # 2026-09-03 WebSearchで、通販サイト(c-labo-online.jp)とは別ドメインの
-        # 買取専用サイト(c-labo-kaitori.jp)を発見。ポケカ買取ページのURLを
-        # buy_urlに設定(通販サイトと同じECテンプレートかは未検証。debug_fetch
-        # 後に専用パーサーへの切り替えを検討)。
-        buy_url="https://www.c-labo-kaitori.jp/page/10",
+        # 買取専用サイト(c-labo-kaitori.jp)を発見。debug_fetchで実HTML確認済み:
+        # /page/10はカテゴリ一覧(シリーズ別リンク集)のみで価格情報は無かった。
+        # リンク先が/product-group/<id>で通販サイトと同じOCNKベースのURL体系
+        # だったため、「人気高レアリティ一覧」(product-group/341)を暫定的に
+        # buy_urlに設定。実データ抽出できるかは次回debug_fetchで要確認。
+        buy_url="https://www.c-labo-kaitori.jp/product-group/341",
         # sell_urlは専用パーサー(ec_common、カードラッシュと共通)で実データ
         # 抽出できることを確認済み(2026-09-03)。
         sell_url="https://www.c-labo-online.jp/product-group/2413",
@@ -185,13 +187,10 @@ SHOPS: List[ShopConfig] = [
     ShopConfig(
         shop_id="dorasuta",
         shop_name="ドラゴンスター(ネット買取)",
-        # WebSearchで発見(2026-09-03)。買取専用ドメイン(buy.dorasuta.jp)で
-        # ポケモンカードのシリーズ別買取価格表を公開している模様。この
-        # セッションからは対象ショップドメインへのegressがブロックされて
-        # おりHTML構造を直接確認できないため、debug_fetch_html.ymlでの
-        # 実HTML取得結果を見てから専用パーサーに置き換える前提で、まずは
-        # 汎用フォールバックパーサーで追加する。
-        buy_url="https://buy.dorasuta.jp/pokemon-card/series-list",
+        # WebSearchで発見(2026-09-03)。debug_fetchで実アクセスした結果
+        # 403 Forbiddenで拒否された。他の除外ショップ同様、bot対策による
+        # 明確な拒否と判断しヘッダー偽装等での回避は行わず除外(None化)。
+        buy_url=None,
         sell_url=None,
         shop_type="buy_only",
         parser="dorasuta",
@@ -199,9 +198,10 @@ SHOPS: List[ShopConfig] = [
     ShopConfig(
         shop_id="ka_nabell",
         shop_name="カーナベル",
-        # WebSearchで発見(2026-09-03)。TCG買取サイトでポケモンカードの
-        # 買取価格検索ページを公開。実HTML構造は未検証(debug_fetch待ち)。
-        buy_url="https://www.ka-nabell.com/ec/buy/pokemon",
+        # WebSearchで発見(2026-09-03)。debug_fetchで実アクセスした結果
+        # 403 Forbiddenで拒否された。他の除外ショップ同様、bot対策による
+        # 明確な拒否と判断しヘッダー偽装等での回避は行わず除外(None化)。
+        buy_url=None,
         sell_url=None,
         shop_type="buy_only",
         parser="ka_nabell",
@@ -209,10 +209,14 @@ SHOPS: List[ShopConfig] = [
     ShopConfig(
         shop_id="hbst",
         shop_name="ホビーステーション",
-        # WebSearchで発見(2026-09-03)。「高価買取リスト」ページ。ポケモン
-        # カード以外のジャンルも同一ページに含まれる可能性があり、実HTML
-        # 確認後にポケカのみを抽出するロジックへ調整が必要になりうる。
-        buy_url="https://www.hbst.net/purchase/",
+        # WebSearchで発見(2026-09-03)。debug_fetchで実HTML確認済み: 403等の
+        # 拒否はされないが、「高価買取リスト」検索フォーム(purchase/)の
+        # game選択肢にウィクロス/ヴァイス/Z-X/MTG/DM/遊戯王のみが並び、
+        # ポケモンカードの選択肢が無かった。店舗ブログ記事(?p=...)個別に
+        # 買取表が掲載されている可能性はあるが体系的な一覧ページではないため、
+        # 買取ページ本体(/selling/)を追加してカード種別の実態を再確認中。
+        buy_url=None,
+        buy_urls=["https://www.hbst.net/purchase/", "https://www.hbst.net/selling/"],
         sell_url=None,
         shop_type="buy_only",
         parser="hbst",
@@ -220,10 +224,12 @@ SHOPS: List[ShopConfig] = [
     ShopConfig(
         shop_id="furuichi",
         shop_name="古本市場(ふるいち)",
-        # WebSearchで発見(2026-09-03)。ポケモンカードゲーム専用の高価買取
-        # 情報ページ。掲載額は「買取上限金額」の可能性があり(要実HTML確認)、
-        # その場合はHIGH_VALUE_THRESHOLDと相性が良い(店舗のみ買取・ネット
-        # 買取非対応だが価格表自体はWeb公開されている)。
+        # WebSearchで発見(2026-09-03)。debug_fetchで実HTML確認・専用パーサー
+        # (.cp-brand_itemブロック単位)で実データ抽出できることを確認済み
+        # (2026-09-03、6件)。ただし掲載されているのは「ポケカ買取特選タイトル」
+        # というハイライトのみで、最高額でも25,000円程度とHIGH_VALUE_THRESHOLD
+        # (50万円)には遠く及ばない。全カード網羅の一覧ページは見つかって
+        # いない(店舗持ち込みのみ対応で宅配・ネット買取非対応のショップ)。
         buy_url="https://www.furu1.net/kaitori/sell_toreca/pk",
         sell_url=None,
         shop_type="buy_only",
