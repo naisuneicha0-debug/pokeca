@@ -1,13 +1,12 @@
 """カードラボ用パーサー(販売価格のみ)。
 
-実サイトのHTML構造が未検証のため、汎用テキストパターンマッチ
-(generic_text_list_parse)を暫定使用している。GitHub Actions実行後の
-ログ・取得結果を見て、専用のセレクタベース実装に置き換えること。
+デバッグ用HTML取得(debug_fetch)で実構造を確認済み。カードラッシュと
+同じECカートシステムのテンプレートのため、共通実装(ec_common)を使う。
 """
 from typing import List, Dict
 
-from .base import generic_text_list_parse
+from .ec_common import parse_ec_platform
 
 
 def parse(html: str, source_site: str, direction: str) -> List[Dict]:
-    return generic_text_list_parse(html, source_site, direction)
+    return parse_ec_platform(html, source_site, direction)

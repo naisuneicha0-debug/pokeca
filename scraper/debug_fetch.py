@@ -12,7 +12,7 @@ from __future__ import annotations
 from pathlib import Path
 
 from .config import SHOPS
-from .http_client import RateLimitedClient, USER_AGENT
+from .http_client import RateLimitedClient, USER_AGENT, decode_html
 from .robots import is_allowed
 
 OUT_DIR = Path(__file__).resolve().parent.parent / "debug_html"
@@ -45,9 +45,10 @@ def run() -> None:
                 print(f"[ERROR] {shop.shop_name} ({direction}): {e}")
                 continue
 
+            text = decode_html(resp)
             html_path = OUT_DIR / f"{base_name}.html"
-            html_path.write_text(resp.text, encoding="utf-8")
-            print(f"[OK] {shop.shop_name} ({direction}): status={status} bytes={len(resp.text)} -> {html_path.name}")
+            html_path.write_text(text, encoding="utf-8")
+            print(f"[OK] {shop.shop_name} ({direction}): status={status} bytes={len(text)} -> {html_path.name}")
 
 
 if __name__ == "__main__":

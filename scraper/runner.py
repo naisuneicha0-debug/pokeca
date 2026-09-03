@@ -3,7 +3,7 @@ from __future__ import annotations
 from typing import List, Dict
 
 from .config import SHOPS, HIGH_VALUE_THRESHOLD
-from .http_client import RateLimitedClient, USER_AGENT
+from .http_client import RateLimitedClient, USER_AGENT, decode_html
 from .robots import is_allowed
 from .parsers import get_parser
 from .output import write_shops, write_card_price
@@ -44,7 +44,7 @@ def run() -> None:
                 continue
 
             try:
-                records = parser(resp.text, shop.shop_name, direction)
+                records = parser(decode_html(resp), shop.shop_name, direction)
             except Exception as e:  # noqa: BLE001
                 shop_result["errors"].append(f"{direction}パース失敗: {e}")
                 print(f"[ERROR] {shop.shop_name} ({direction}) parse: {e}")

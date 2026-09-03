@@ -1,6 +1,30 @@
 import random
+import re
 import time
 import requests
+
+_META_CHARSET_RE = re.compile(rb'charset=["\']?([\w-]+)', re.I)
+
+
+def decode_html(resp: requests.Response) -> str:
+    """レスポンス本文をHTMLとして正しくデコードする。
+
+    requestsはHTTPヘッダにcharsetが無いとISO-8859-1にフォールバックし、
+    日本語サイト(UTF-8/Shift_JISなど)で文字化けする。HTML内のmeta charset
+    宣言を優先的に見て、それも無ければapparent_encodingで推定する。
+    """
+    content = resp.content
+    m = _META_CHARSET_RE.search(content[:2000])
+    if m:
+        try:
+            return content.decode(m.group(1).decode("ascii"), errors="replace")
+        except LookupError:
+            pass
+
+    if resp.encoding and resp.encoding.lower() != "iso-8859-1":
+        return resp.text
+
+    return content.decode(resp.apparent_encoding or "utf-8", errors="replace")
 
 # 「同時並列アクセスはしない」「リクエスト間隔は最低2〜3秒空ける」の厳守事項に対応。
 # このクライアントを使い回す限り、直列実行かつ直前リクエストからの経過時間を
