@@ -23,9 +23,9 @@
   {
     "shop_id": "hareruya2",
     "shop_name": "晴れる屋2",
-    "buy_url": "https://www.hareruya2.com/en/pages/buying",
+    "buy_url": "https://api.corp.hareruyamtg.com/user_data/hareruya2/json/products_all.json",
     "sell_url": null,
-    "shop_type": "buy_only"
+    "shop_type": "both"
   },
   {
     "shop_id": "toretoku",
@@ -65,7 +65,7 @@
   {
     "shop_id": "netoff_moetaku",
     "shop_name": "ネットオフ もえたく!",
-    "buy_url": "https://www.netoff.co.jp/figure/purchase/?ky=%E3%83%9D%E3%82%B1%E3%83%83%E3%83%88%E3%83%A2%E3%83%B3%E3%82%B9%E3%82%BF%E3%83%BC&ct=%E3%83%88%E3%83%AC%E3%82%AB&mk=%E3%83%9D%E3%82%B1%E3%83%A2%E3%83%B3%E3%82%AB%E3%83%BC%E3%83%89%E3%82%B2%E3%83%BC%E3%83%A0",
+    "buy_url": null,
     "sell_url": null,
     "shop_type": "buy_only"
   }
