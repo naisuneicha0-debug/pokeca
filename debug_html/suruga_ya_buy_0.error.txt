@@ -1,0 +1,2 @@
+URL: https://www.suruga-ya.jp/kaitori/search_buy?category=501080033&search_word=
+エラー: 403 Client Error: Forbidden for url: https://www.suruga-ya.jp/kaitori/search_buy?category=501080033&search_word=

@@ -1,0 +1,2 @@
+URL: https://yuyu-tei.jp/buy/poc/list
+エラー: 403 Client Error: Forbidden for url: https://yuyu-tei.jp/buy/poc/list
