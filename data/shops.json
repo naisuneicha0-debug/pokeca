@@ -1,0 +1,58 @@
+[
+  {
+    "shop_id": "yuyu_tei",
+    "shop_name": "遊々亭",
+    "buy_url": "https://yuyu-tei.jp/buy/poc/list",
+    "sell_url": "https://yuyu-tei.jp/sell/poc/list",
+    "shop_type": "both"
+  },
+  {
+    "shop_id": "cardrush",
+    "shop_name": "カードラッシュ",
+    "buy_url": "https://cardrush.media/pokemon/buying_prices",
+    "sell_url": "https://www.cardrush-pokemon.jp/",
+    "shop_type": "both"
+  },
+  {
+    "shop_id": "c_labo",
+    "shop_name": "カードラボ",
+    "buy_url": null,
+    "sell_url": "https://www.c-labo-online.jp/product-group/2413",
+    "shop_type": "sell_only"
+  },
+  {
+    "shop_id": "hareruya2",
+    "shop_name": "晴れる屋2",
+    "buy_url": "https://www.hareruya2.com/",
+    "sell_url": null,
+    "shop_type": "buy_only"
+  },
+  {
+    "shop_id": "toretoku",
+    "shop_name": "トレトク",
+    "buy_url": "https://kaitori-toretoku.jp/buypricelist/pokemon",
+    "sell_url": null,
+    "shop_type": "buy_only"
+  },
+  {
+    "shop_id": "fullcomp",
+    "shop_name": "フルコンプ秋葉原店",
+    "buy_url": "https://www.fullcomp.jp/akihabara/kaitori/19879",
+    "sell_url": null,
+    "shop_type": "buy_only"
+  },
+  {
+    "shop_id": "kaitori_collector",
+    "shop_name": "買取コレクター",
+    "buy_url": "https://kaitoricollector.com/card-kind/pokemoncard/price/",
+    "sell_url": null,
+    "shop_type": "buy_only"
+  },
+  {
+    "shop_id": "nin_nin",
+    "shop_name": "ニンニン",
+    "buy_url": "https://nin-nin-pokeka.jp/kakaku/tcg/pokemon/",
+    "sell_url": null,
+    "shop_type": "buy_only"
+  }
+]
