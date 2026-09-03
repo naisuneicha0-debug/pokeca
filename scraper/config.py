@@ -55,22 +55,25 @@ SHOPS: List[ShopConfig] = [
     ShopConfig(
         shop_id="yuyu_tei",
         shop_name="遊々亭",
-        # buy/sellとも403 Forbiddenで拒否される(2026-09-03確認)。bot対策か
-        # URL自体の誤りの可能性があり、実HTMLが取得できておらず未解決。
-        buy_url="https://yuyu-tei.jp/buy/poc/list",  # TODO要検証
-        sell_url="https://yuyu-tei.jp/sell/poc/list",  # TODO要検証
+        # buy/sellとも403 Forbiddenで拒否される(2026-09-03確認、標準的な
+        # Accept/Accept-Languageヘッダーを付けても変化なし)。bot対策による
+        # 明確な自動アクセス拒否と判断し、対象から除外(buy_url/sell_urlを
+        # None化)。ヘッダー偽装等でのすり抜けは意図的に行わない。
+        buy_url=None,
+        sell_url=None,
         shop_type="both",
         parser="yuyu_tei",
     ),
     ShopConfig(
         shop_id="cardrush",
         shop_name="カードラッシュ",
-        # buy_url(cardrush.media)は403 Forbidden(2026-09-03確認)、要調査。
-        # sell_url(トップページ)は取得できており、カードラボと同じECテンプレート
-        # 用の専用パーサー(ec_common)で実データが抽出できることを確認済み。
-        # ただしトップページのため一部しか拾えておらず、本来の全カード一覧
-        # ページのURLへの差し替えが望ましい。
-        buy_url="https://cardrush.media/pokemon/buying_prices",  # TODO要検証
+        # buy_url(cardrush.media)は403 Forbidden(2026-09-03確認、ヘッダー
+        # 改善後も変化なし)。bot対策による拒否と判断し除外(None化)。
+        # sell_url(トップページ)は取得できており、カードラボと同じEC
+        # テンプレート用の専用パーサー(ec_common)で実データ抽出を確認済み。
+        # ただしトップページのため一部しか拾えておらず、本来の全カード
+        # 一覧ページのURLへの差し替えが望ましい。
+        buy_url=None,
         sell_url="https://www.cardrush-pokemon.jp/",  # TODO要検証: トップページの一部のみ
         shop_type="both",
         parser="cardrush",
@@ -149,8 +152,9 @@ SHOPS: List[ShopConfig] = [
         shop_id="suruga_ya",
         shop_name="駿河屋",
         # Web検索で追加(2026-09-03)。403 Forbiddenで拒否される
-        # (2026-09-03確認)。bot対策の可能性が高く、実HTML未確認。
-        buy_url="https://www.suruga-ya.jp/kaitori/search_buy?category=501080033&search_word=",  # TODO要検証
+        # (ヘッダー改善後も変化なし)。bot対策による明確な拒否と判断し
+        # 除外(None化)。
+        buy_url=None,
         sell_url=None,
         shop_type="buy_only",
         parser="suruga_ya",
@@ -158,12 +162,12 @@ SHOPS: List[ShopConfig] = [
     ShopConfig(
         shop_id="netoff_moetaku",
         shop_name="ネットオフ もえたく!",
-        # Web検索で追加(2026-09-03)。当初のbuy_url(ジャンルのランディング
-        # ページ)は個別カードの価格ではなく「買取価格の月次平均推移」しか
-        # 載っておらず、実データ収集には使えないと判明。検索結果ページ
-        # (ky=ポケットモンスター パラメータ)に差し替えたが、この新URLは
-        # このセッションのegress制限でまだ疎通確認できていない。
-        buy_url="https://www.netoff.co.jp/figure/purchase/?ky=%E3%83%9D%E3%82%B1%E3%83%83%E3%83%88%E3%83%A2%E3%83%B3%E3%82%B9%E3%82%BF%E3%83%BC&ct=%E3%83%88%E3%83%AC%E3%82%AB&mk=%E3%83%9D%E3%82%B1%E3%83%A2%E3%83%B3%E3%82%AB%E3%83%BC%E3%83%89%E3%82%B2%E3%83%BC%E3%83%A0",  # TODO要検証
+        # Web検索で追加(2026-09-03)。ジャンルのランディングページ・検索
+        # 結果ページのどちらも試したが、個別カードの価格情報はHTMLに
+        # 含まれておらずJSで動的に読み込む構成と判明。晴れる屋2と同様
+        # headless browser(Playwright等)が必要でrequestsでは取得不可。
+        # buy_urlは検索結果ページ(将来対応時の参考用)として残す。
+        buy_url="https://www.netoff.co.jp/figure/purchase/?ky=%E3%83%9D%E3%82%B1%E3%83%83%E3%83%88%E3%83%A2%E3%83%B3%E3%82%B9%E3%82%BF%E3%83%BC&ct=%E3%83%88%E3%83%AC%E3%82%AB&mk=%E3%83%9D%E3%82%B1%E3%83%A2%E3%83%B3%E3%82%AB%E3%83%BC%E3%83%89%E3%82%B2%E3%83%BC%E3%83%A0",  # TODO要検証: JS動的レンダリング
         sell_url=None,
         shop_type="buy_only",
         parser="netoff_moetaku",
