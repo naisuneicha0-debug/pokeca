@@ -95,12 +95,15 @@ SHOPS: List[ShopConfig] = [
     ShopConfig(
         shop_id="hareruya2",
         shop_name="晴れる屋2",
-        # Web検索で見つけた買取価格表の専用ページ(タイトルは正しく一致)。
-        # 実HTMLに<table>等の価格データが含まれておらず、JSで動的に描画
-        # される構成と判明(2026-09-03)。render_js=Trueでheadless browser
-        # (Playwright)経由の取得に切り替えた。実レンダリング結果はまだ
-        # 確認できておらず、専用パーサーは未実装(現状は汎用フォールバック)。
-        buy_url="https://www.hareruya2.com/en/pages/buying",  # TODO要検証: レンダリング結果を確認しパーサー実装
+        # 当初のURL(/en/pages/buying)はJSレンダリング後も価格表が無く、
+        # 「買取について」の説明文とカテゴリ一覧ナビゲーションしか
+        # 存在しないページと判明(2026-09-03)。ページ内リンクに
+        # buying-list?series_name=... というクエリ付きの一覧ページが
+        # 見つかったため、まずは全シリーズ版に差し替え。実レンダリング
+        # 結果はまだ未確認。なお店舗買取とは別に「ネット買取」への
+        # リンク(https://www.hare2buy.com/)も見つかっており、そちらが
+        # 本命の可能性もある。
+        buy_url="https://www.hareruya2.com/en/pages/buying-list",  # TODO要検証: レンダリング結果を確認しパーサー実装
         sell_url=None,  # TODO要確認: 販売価格ページのURLが不明
         shop_type="buy_only",
         parser="hareruya2",
@@ -167,15 +170,16 @@ SHOPS: List[ShopConfig] = [
     ShopConfig(
         shop_id="netoff_moetaku",
         shop_name="ネットオフ もえたく!",
-        # Web検索で追加(2026-09-03)。ジャンルのランディングページ・検索
-        # 結果ページのどちらも試したが、個別カードの価格情報はHTMLに
-        # 含まれておらずJSで動的に読み込む構成と判明。render_js=Trueで
-        # headless browser経由に切り替えたが、実レンダリング結果はまだ
-        # 確認できておらず、専用パーサーは未実装(現状は汎用フォールバック)。
-        buy_url="https://www.netoff.co.jp/figure/purchase/?ky=%E3%83%9D%E3%82%B1%E3%83%83%E3%83%88%E3%83%A2%E3%83%B3%E3%82%B9%E3%82%BF%E3%83%BC&ct=%E3%83%88%E3%83%AC%E3%82%AB&mk=%E3%83%9D%E3%82%B1%E3%83%A2%E3%83%B3%E3%82%AB%E3%83%BC%E3%83%89%E3%82%B2%E3%83%BC%E3%83%A0",  # TODO要検証: レンダリング結果を確認しパーサー実装
+        # Web検索で追加(2026-09-03)。ランディングページ・検索結果ページ
+        # ともJSレンダリング後も個別カードの価格表は見つからず、ページ内の
+        # 「円」表記は全てYotpoのお客様レビュー本文(お礼コメント中の
+        # 「計7点で107,300円のお買取り」のような合計額の言及)だった。
+        # このショップは静的な価格一覧を公開しておらず、実際の査定は
+        # 「AIがカード写真から査定」等インタラクティブな機能のみと判断。
+        # スクレイピング可能な価格表が存在しないため対象除外(None化)。
+        buy_url=None,
         sell_url=None,
         shop_type="buy_only",
         parser="netoff_moetaku",
-        render_js=True,
     ),
 ]
