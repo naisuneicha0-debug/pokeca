@@ -17,6 +17,10 @@ class ShopConfig:
     # 指定が無ければ buy_url/sell_url を単独のURLとして使う。
     buy_urls: Optional[List[str]] = None
     sell_urls: Optional[List[str]] = None
+    # True の場合、requestsではなくheadless browser(Playwright)でJS
+    # レンダリング後のHTMLを取得する(クライアントサイドJSで価格表を
+    # 描画するサイト向け)。
+    render_js: bool = False
 
 
 def get_urls(shop: ShopConfig, direction: str) -> List[str]:
@@ -92,14 +96,15 @@ SHOPS: List[ShopConfig] = [
         shop_id="hareruya2",
         shop_name="晴れる屋2",
         # Web検索で見つけた買取価格表の専用ページ(タイトルは正しく一致)。
-        # ただし実HTMLに<table>等の価格データが含まれておらず、JSで動的に
-        # 描画される構成と判明(2026-09-03)。requestsベースのスクレイピング
-        # では取得不可。headless browser(Playwright等)導入が必要で今回は
-        # 未対応。
-        buy_url="https://www.hareruya2.com/en/pages/buying",  # TODO要検証: JS動的レンダリング
+        # 実HTMLに<table>等の価格データが含まれておらず、JSで動的に描画
+        # される構成と判明(2026-09-03)。render_js=Trueでheadless browser
+        # (Playwright)経由の取得に切り替えた。実レンダリング結果はまだ
+        # 確認できておらず、専用パーサーは未実装(現状は汎用フォールバック)。
+        buy_url="https://www.hareruya2.com/en/pages/buying",  # TODO要検証: レンダリング結果を確認しパーサー実装
         sell_url=None,  # TODO要確認: 販売価格ページのURLが不明
         shop_type="buy_only",
         parser="hareruya2",
+        render_js=True,
     ),
     ShopConfig(
         shop_id="toretoku",
@@ -164,12 +169,13 @@ SHOPS: List[ShopConfig] = [
         shop_name="ネットオフ もえたく!",
         # Web検索で追加(2026-09-03)。ジャンルのランディングページ・検索
         # 結果ページのどちらも試したが、個別カードの価格情報はHTMLに
-        # 含まれておらずJSで動的に読み込む構成と判明。晴れる屋2と同様
-        # headless browser(Playwright等)が必要でrequestsでは取得不可。
-        # buy_urlは検索結果ページ(将来対応時の参考用)として残す。
-        buy_url="https://www.netoff.co.jp/figure/purchase/?ky=%E3%83%9D%E3%82%B1%E3%83%83%E3%83%88%E3%83%A2%E3%83%B3%E3%82%B9%E3%82%BF%E3%83%BC&ct=%E3%83%88%E3%83%AC%E3%82%AB&mk=%E3%83%9D%E3%82%B1%E3%83%A2%E3%83%B3%E3%82%AB%E3%83%BC%E3%83%89%E3%82%B2%E3%83%BC%E3%83%A0",  # TODO要検証: JS動的レンダリング
+        # 含まれておらずJSで動的に読み込む構成と判明。render_js=Trueで
+        # headless browser経由に切り替えたが、実レンダリング結果はまだ
+        # 確認できておらず、専用パーサーは未実装(現状は汎用フォールバック)。
+        buy_url="https://www.netoff.co.jp/figure/purchase/?ky=%E3%83%9D%E3%82%B1%E3%83%83%E3%83%88%E3%83%A2%E3%83%B3%E3%82%B9%E3%82%BF%E3%83%BC&ct=%E3%83%88%E3%83%AC%E3%82%AB&mk=%E3%83%9D%E3%82%B1%E3%83%A2%E3%83%B3%E3%82%AB%E3%83%BC%E3%83%89%E3%82%B2%E3%83%BC%E3%83%A0",  # TODO要検証: レンダリング結果を確認しパーサー実装
         sell_url=None,
         shop_type="buy_only",
         parser="netoff_moetaku",
+        render_js=True,
     ),
 ]

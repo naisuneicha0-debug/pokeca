@@ -1,59 +1,68 @@
 from __future__ import annotations
 
+from contextlib import ExitStack
 from typing import List, Dict
 
 from .config import SHOPS, HIGH_VALUE_THRESHOLD, get_urls
-from .http_client import RateLimitedClient, USER_AGENT, decode_html
-from .robots import is_allowed
+from .browser_client import browser_session
+from .fetcher import Fetcher
 from .parsers import get_parser
+from .rate_limiter import RateLimiter
 from .output import write_shops, write_card_price
 
 
 def run() -> None:
-    client = RateLimitedClient()
+    rate_limiter = RateLimiter()
     all_records: List[Dict] = []
     summary = []
 
-    for shop in SHOPS:
-        shop_result = {
-            "shop_id": shop.shop_id,
-            "shop_name": shop.shop_name,
-            "buy": 0,
-            "sell": 0,
-            "skipped": [],
-            "errors": [],
-        }
-        parser = get_parser(shop.parser)
+    needs_browser = any(shop.render_js for shop in SHOPS)
 
-        for direction in ("buy", "sell"):
-            urls = get_urls(shop, direction)
+    with ExitStack() as stack:
+        browser = None
+        if needs_browser:
+            try:
+                browser = stack.enter_context(browser_session())
+            except Exception as e:  # noqa: BLE001 - browser起動失敗でも他ショップは継続させる
+                print(f"[ERROR] headless browser起動失敗: {e}")
 
-            for url in urls:
-                if not is_allowed(url, USER_AGENT):
-                    msg = f"robots.txtにより除外: {url}"
-                    shop_result["skipped"].append(msg)
-                    print(f"[SKIP] {shop.shop_name} ({direction}): {msg}")
-                    continue
+        fetcher = Fetcher(rate_limiter, browser)
 
-                try:
-                    resp = client.get(url)
-                    resp.raise_for_status()
-                except Exception as e:  # noqa: BLE001 - ショップ単位で失敗を切り分けたい
-                    shop_result["errors"].append(f"{direction}取得失敗 ({url}): {e}")
-                    print(f"[ERROR] {shop.shop_name} ({direction}) fetch {url}: {e}")
-                    continue
+        for shop in SHOPS:
+            shop_result = {
+                "shop_id": shop.shop_id,
+                "shop_name": shop.shop_name,
+                "buy": 0,
+                "sell": 0,
+                "skipped": [],
+                "errors": [],
+            }
+            parser = get_parser(shop.parser)
 
-                try:
-                    records = parser(decode_html(resp), shop.shop_name, direction)
-                except Exception as e:  # noqa: BLE001
-                    shop_result["errors"].append(f"{direction}パース失敗 ({url}): {e}")
-                    print(f"[ERROR] {shop.shop_name} ({direction}) parse {url}: {e}")
-                    continue
+            for direction in ("buy", "sell"):
+                for url in get_urls(shop, direction):
+                    try:
+                        html_text = fetcher.fetch(shop, url)
+                    except PermissionError as e:
+                        shop_result["skipped"].append(str(e))
+                        print(f"[SKIP] {shop.shop_name} ({direction}): {e}")
+                        continue
+                    except Exception as e:  # noqa: BLE001 - ショップ単位で失敗を切り分けたい
+                        shop_result["errors"].append(f"{direction}取得失敗 ({url}): {e}")
+                        print(f"[ERROR] {shop.shop_name} ({direction}) fetch {url}: {e}")
+                        continue
 
-                shop_result[direction] += len(records)
-                all_records.extend(records)
+                    try:
+                        records = parser(html_text, shop.shop_name, direction)
+                    except Exception as e:  # noqa: BLE001
+                        shop_result["errors"].append(f"{direction}パース失敗 ({url}): {e}")
+                        print(f"[ERROR] {shop.shop_name} ({direction}) parse {url}: {e}")
+                        continue
 
-        summary.append(shop_result)
+                    shop_result[direction] += len(records)
+                    all_records.extend(records)
+
+            summary.append(shop_result)
 
     # 収集対象は50万円以上のみ(上限なし)。買取・売値のどちらかが
     # しきい値を超えていれば残す。
