@@ -77,18 +77,19 @@ SHOPS: List[ShopConfig] = [
         # 「買取リスト」ページ群(/page/38,39,40,41,42,45)を発見。debug_fetch
         # で実HTMLを確認したところ、価格表自体はページ内に無く、Googleスプレッド
         # シートの公開ビュー(pubhtml)をiframe埋め込みしている構造だった
-        # (/page/40のみ注意事項のみで対象外)。iframeのsrc URLを直接取得すれば
-        # 静的HTMLのテーブルとして取れる可能性が高いため、そちらをbuy_urlsに
-        # 設定(gidはページごとに異なるシートを指しているため各々列挙。テーブル
-        # 構造・実データ抽出可否は次回debug_fetchで要確認、専用パーサー未実装
-        # のため暫定的にcardrushパーサー(ec_common)のまま)。
+        # (/page/40のみ注意事項のみで対象外)。iframeのsrc URL(pubhtml)を直接
+        # buy_urlsに設定して再取得したが、近年のGoogleスプレッドシート
+        # ビューアーはクライアントサイドJSレンダリング必須の仕様に変わっており
+        # (<div id="sheets-viewport">が空)、静的HTMLではテキストが取れなかった
+        # (2026-09-03)。同じ公開シートのCSVエクスポート(/pub?output=csv)なら
+        # 静的に取れる可能性が高いため、そちらに切り替えて再検証中。
         buy_url=None,
         buy_urls=[
-            "https://docs.google.com/spreadsheets/d/e/2PACX-1vQT3Q9qDbZUpnP3_WH2I5qw8O-U_PqXVhhoIzH2o-tSzeDND9FTuoGKbZiNHTbrzTgKAUA2_SvXFh_2/pubhtml?gid=159569114&single=true&widget=true&headers=false",
-            "https://docs.google.com/spreadsheets/d/e/2PACX-1vQT3Q9qDbZUpnP3_WH2I5qw8O-U_PqXVhhoIzH2o-tSzeDND9FTuoGKbZiNHTbrzTgKAUA2_SvXFh_2/pubhtml?gid=1490875147&single=true&widget=true&headers=false",
-            "https://docs.google.com/spreadsheets/d/e/2PACX-1vQT3Q9qDbZUpnP3_WH2I5qw8O-U_PqXVhhoIzH2o-tSzeDND9FTuoGKbZiNHTbrzTgKAUA2_SvXFh_2/pubhtml?gid=2119163373&single=true&widget=true&headers=false",
-            "https://docs.google.com/spreadsheets/d/e/2PACX-1vQT3Q9qDbZUpnP3_WH2I5qw8O-U_PqXVhhoIzH2o-tSzeDND9FTuoGKbZiNHTbrzTgKAUA2_SvXFh_2/pubhtml?gid=1990744902&single=true&widget=true&headers=false",
-            "https://docs.google.com/spreadsheets/d/e/2PACX-1vQT3Q9qDbZUpnP3_WH2I5qw8O-U_PqXVhhoIzH2o-tSzeDND9FTuoGKbZiNHTbrzTgKAUA2_SvXFh_2/pubhtml?gid=1640929383&single=true&widget=true&headers=false",
+            "https://docs.google.com/spreadsheets/d/e/2PACX-1vQT3Q9qDbZUpnP3_WH2I5qw8O-U_PqXVhhoIzH2o-tSzeDND9FTuoGKbZiNHTbrzTgKAUA2_SvXFh_2/pub?gid=159569114&single=true&output=csv",
+            "https://docs.google.com/spreadsheets/d/e/2PACX-1vQT3Q9qDbZUpnP3_WH2I5qw8O-U_PqXVhhoIzH2o-tSzeDND9FTuoGKbZiNHTbrzTgKAUA2_SvXFh_2/pub?gid=1490875147&single=true&output=csv",
+            "https://docs.google.com/spreadsheets/d/e/2PACX-1vQT3Q9qDbZUpnP3_WH2I5qw8O-U_PqXVhhoIzH2o-tSzeDND9FTuoGKbZiNHTbrzTgKAUA2_SvXFh_2/pub?gid=2119163373&single=true&output=csv",
+            "https://docs.google.com/spreadsheets/d/e/2PACX-1vQT3Q9qDbZUpnP3_WH2I5qw8O-U_PqXVhhoIzH2o-tSzeDND9FTuoGKbZiNHTbrzTgKAUA2_SvXFh_2/pub?gid=1990744902&single=true&output=csv",
+            "https://docs.google.com/spreadsheets/d/e/2PACX-1vQT3Q9qDbZUpnP3_WH2I5qw8O-U_PqXVhhoIzH2o-tSzeDND9FTuoGKbZiNHTbrzTgKAUA2_SvXFh_2/pub?gid=1640929383&single=true&output=csv",
         ],
         sell_url="https://www.cardrush-pokemon.jp/",  # TODO要検証: トップページの一部のみ
         shop_type="both",
@@ -101,8 +102,9 @@ SHOPS: List[ShopConfig] = [
         # 買取専用サイト(c-labo-kaitori.jp)を発見。debug_fetchで実HTML確認済み:
         # /page/10はカテゴリ一覧(シリーズ別リンク集)のみで価格情報は無かった。
         # リンク先が/product-group/<id>で通販サイトと同じOCNKベースのURL体系
-        # だったため、「人気高レアリティ一覧」(product-group/341)を暫定的に
-        # buy_urlに設定。実データ抽出できるかは次回debug_fetchで要確認。
+        # だったため、「人気高レアリティ一覧」(product-group/341)に変更し
+        # 実データ35件抽出できることを確認済み(2026-09-03、既存の
+        # ec_commonパーサーがそのまま使えた)。
         buy_url="https://www.c-labo-kaitori.jp/product-group/341",
         # sell_urlは専用パーサー(ec_common、カードラッシュと共通)で実データ
         # 抽出できることを確認済み(2026-09-03)。
@@ -212,11 +214,11 @@ SHOPS: List[ShopConfig] = [
         # WebSearchで発見(2026-09-03)。debug_fetchで実HTML確認済み: 403等の
         # 拒否はされないが、「高価買取リスト」検索フォーム(purchase/)の
         # game選択肢にウィクロス/ヴァイス/Z-X/MTG/DM/遊戯王のみが並び、
-        # ポケモンカードの選択肢が無かった。店舗ブログ記事(?p=...)個別に
-        # 買取表が掲載されている可能性はあるが体系的な一覧ページではないため、
-        # 買取ページ本体(/selling/)を追加してカード種別の実態を再確認中。
+        # ポケモンカードの選択肢が無かった。買取ページ本体(/selling/)も
+        # 確認したがポケモンカードへの導線が無かった。店舗ブログ記事
+        # (?p=...)個別に買取表が掲載されている可能性はあるが、体系的な
+        # 一覧ページが見つからないため対象除外(None化)。
         buy_url=None,
-        buy_urls=["https://www.hbst.net/purchase/", "https://www.hbst.net/selling/"],
         sell_url=None,
         shop_type="buy_only",
         parser="hbst",
