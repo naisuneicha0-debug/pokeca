@@ -1,5 +1,6 @@
 name: Scrape card prices
 
+# NOTE: GitHubにワークフローとして再認識させるための再push
 on:
   schedule:
     # 毎日 03:00 JST (UTC 18:00 前日) に実行。頻度は運用しながら調整してよい。
