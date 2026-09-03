@@ -95,19 +95,17 @@ SHOPS: List[ShopConfig] = [
     ShopConfig(
         shop_id="hareruya2",
         shop_name="晴れる屋2",
-        # 当初のURL(/en/pages/buying)はJSレンダリング後も価格表が無く、
-        # 「買取について」の説明文とカテゴリ一覧ナビゲーションしか
-        # 存在しないページと判明(2026-09-03)。ページ内リンクに
-        # buying-list?series_name=... というクエリ付きの一覧ページが
-        # 見つかったため、まずは全シリーズ版に差し替え。実レンダリング
-        # 結果はまだ未確認。なお店舗買取とは別に「ネット買取」への
-        # リンク(https://www.hare2buy.com/)も見つかっており、そちらが
-        # 本命の可能性もある。
-        buy_url="https://www.hareruya2.com/en/pages/buying-list",  # TODO要検証: レンダリング結果を確認しパーサー実装
+        # buying-listページ(Playwrightでレンダリング確認済み、2026-09-03)の
+        # JS内に全商品データの取得元として
+        # https://api.corp.hareruyamtg.com/user_data/hareruya2/json/products_all.json
+        # という公開JSON APIのURLが埋め込まれているのを発見した。全8,785件
+        # (確認時点)を1回のリクエストで取得できるため、Playwright(render_js)
+        # ではなくrequestsで直接このJSONを取得する方式に切り替えた。
+        # JSON構造は未確認のため、専用パーサーは実際のレスポンスを見てから実装する。
+        buy_url="https://api.corp.hareruyamtg.com/user_data/hareruya2/json/products_all.json",  # TODO要検証: JSON構造を確認しパーサー実装
         sell_url=None,  # TODO要確認: 販売価格ページのURLが不明
         shop_type="buy_only",
         parser="hareruya2",
-        render_js=True,
     ),
     ShopConfig(
         shop_id="toretoku",
