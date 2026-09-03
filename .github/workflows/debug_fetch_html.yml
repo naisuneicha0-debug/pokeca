@@ -3,6 +3,9 @@ name: Debug fetch shop HTML
 on:
   workflow_dispatch: {}
 
+permissions:
+  contents: write
+
 jobs:
   fetch:
     runs-on: ubuntu-latest
@@ -19,9 +22,23 @@ jobs:
       - name: Fetch raw HTML per shop
         run: python -m scraper.debug_fetch
 
-      - name: Upload debug HTML
+      - name: Upload debug HTML (artifact)
         uses: actions/upload-artifact@v4
         with:
           name: debug-html
           path: debug_html/
           retention-days: 7
+
+      # artifactはAzure Blob経由のダウンロードになり、開発環境のegress制限で
+      # 取得できないケースがあるため、リポジトリに直接コミットもしておく。
+      - name: Commit debug HTML to repo
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -f debug_html/
+          if git diff --cached --quiet; then
+            echo "変更なし"
+          else
+            git commit -m "chore: update debug HTML snapshots"
+            git push
+          fi
