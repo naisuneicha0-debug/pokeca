@@ -74,23 +74,15 @@ SHOPS: List[ShopConfig] = [
         # buy_url(cardrush.media)は403 Forbidden(2026-09-03確認、ヘッダー
         # 改善後も変化なし)。bot対策による拒否と判断し除外(None化)。
         # 2026-09-03 WebSearchで、同じcardrush-pokemon.jpドメイン内に
-        # 「買取リスト」ページ群(/page/38,39,40,41,42,45)を発見。debug_fetch
-        # で実HTMLを確認したところ、価格表自体はページ内に無く、Googleスプレッド
-        # シートの公開ビュー(pubhtml)をiframe埋め込みしている構造だった
-        # (/page/40のみ注意事項のみで対象外)。iframeのsrc URL(pubhtml)を直接
-        # buy_urlsに設定して再取得したが、近年のGoogleスプレッドシート
-        # ビューアーはクライアントサイドJSレンダリング必須の仕様に変わっており
-        # (<div id="sheets-viewport">が空)、静的HTMLではテキストが取れなかった
-        # (2026-09-03)。同じ公開シートのCSVエクスポート(/pub?output=csv)なら
-        # 静的に取れる可能性が高いため、そちらに切り替えて再検証中。
+        # 「買取リスト」ページ群(/page/38,39,40,41,42,45)を発見したが、
+        # 価格表自体はページ内に無くGoogleスプレッドシートの公開ビュー
+        # (pubhtml)をiframe埋め込みしている構造だった(/page/40のみ注意事項
+        # のみで対象外)。pubhtmlはJSレンダリング必須で静的取得不可、CSV
+        # エクスポート(/pub?output=csv)なら静的取得はできたものの、中身が
+        # 全シート"#REF!"エラーまたは「只今準備中です」で実データが入って
+        # いなかった(2026-09-03、シート自体が壊れている/未整備と判断)。
+        # 買取側はこれ以上の対応方法が無いため対象外とし、sell_urlのみ運用。
         buy_url=None,
-        buy_urls=[
-            "https://docs.google.com/spreadsheets/d/e/2PACX-1vQT3Q9qDbZUpnP3_WH2I5qw8O-U_PqXVhhoIzH2o-tSzeDND9FTuoGKbZiNHTbrzTgKAUA2_SvXFh_2/pub?gid=159569114&single=true&output=csv",
-            "https://docs.google.com/spreadsheets/d/e/2PACX-1vQT3Q9qDbZUpnP3_WH2I5qw8O-U_PqXVhhoIzH2o-tSzeDND9FTuoGKbZiNHTbrzTgKAUA2_SvXFh_2/pub?gid=1490875147&single=true&output=csv",
-            "https://docs.google.com/spreadsheets/d/e/2PACX-1vQT3Q9qDbZUpnP3_WH2I5qw8O-U_PqXVhhoIzH2o-tSzeDND9FTuoGKbZiNHTbrzTgKAUA2_SvXFh_2/pub?gid=2119163373&single=true&output=csv",
-            "https://docs.google.com/spreadsheets/d/e/2PACX-1vQT3Q9qDbZUpnP3_WH2I5qw8O-U_PqXVhhoIzH2o-tSzeDND9FTuoGKbZiNHTbrzTgKAUA2_SvXFh_2/pub?gid=1990744902&single=true&output=csv",
-            "https://docs.google.com/spreadsheets/d/e/2PACX-1vQT3Q9qDbZUpnP3_WH2I5qw8O-U_PqXVhhoIzH2o-tSzeDND9FTuoGKbZiNHTbrzTgKAUA2_SvXFh_2/pub?gid=1640929383&single=true&output=csv",
-        ],
         sell_url="https://www.cardrush-pokemon.jp/",  # TODO要検証: トップページの一部のみ
         shop_type="both",
         parser="cardrush",
