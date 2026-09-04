@@ -431,12 +431,12 @@ SHOPS: List[ShopConfig] = [
         shop_name="ホビーステーション シングル通販店",
         # WebSearchで発見(2026-09-04)。既存で除外したホビーステーション
         # (hbst.net、買取導線なしで除外)とは別ドメインの通販専用サイト。
-        # debug_fetchで実HTML確認済み: トップページには「販売開始」の
-        # お知らせバナーが並ぶのみで価格情報は無かった。バナーのリンク先
-        # (/pk/product/list?...)が商品検索結果ページのため、クエリ無しの
-        # 商品一覧URLに変更して再検証する。
+        # debug_fetchで実HTML確認済み: 商品一覧URL(/pk/product/list)は
+        # Cloudflare等の「安全な接続を確認中...」というJS認証チャレンジ
+        # ページが返り、静的取得では価格情報を含む本来のページに到達
+        # できなかった。他の除外ショップ同様、回避は行わず対象外とする。
         buy_url=None,
-        sell_url="https://www.hobbystation-single.jp/pk/product/list",
+        sell_url=None,
         shop_type="sell_only",
         parser="hobbystation_single",
     ),
@@ -446,10 +446,25 @@ SHOPS: List[ShopConfig] = [
         # WebSearchで発見(2026-09-04)。debug_fetchで実HTML確認済み:
         # トップページは全ジャンル混在(ONE PIECE・ロルカナ等含む)で
         # ポケモンカードは1件のみだった。専用グループページ
-        # (?mode=grp&gid=3030904、「ポケモンカードゲーム シングルカード
-        # の取り扱いを開始」)を発見したため、そちらに変更して再検証する。
+        # (?mode=grp&gid=3030904)はタイプ別サブカテゴリへのリンク集で
+        # 実データは無し。タイプ別ページ(草/炎/水/雷/超/闘/悪/鋼/
+        # ドラゴン/無色)とセール2種のgidを列挙してbuy_urls相当で回る。
         buy_url=None,
-        sell_url="https://torecaplaza55.com/?mode=grp&gid=3030904",
+        sell_url=None,
+        sell_urls=[
+            "https://torecaplaza55.com/?mode=grp&gid=3030905",  # 草
+            "https://torecaplaza55.com/?mode=grp&gid=3030906",  # 炎
+            "https://torecaplaza55.com/?mode=grp&gid=3030907",  # 水
+            "https://torecaplaza55.com/?mode=grp&gid=3030908",  # 雷
+            "https://torecaplaza55.com/?mode=grp&gid=3030909",  # 超
+            "https://torecaplaza55.com/?mode=grp&gid=3030910",  # 闘
+            "https://torecaplaza55.com/?mode=grp&gid=3030912",  # 悪
+            "https://torecaplaza55.com/?mode=grp&gid=3030914",  # 鋼
+            "https://torecaplaza55.com/?mode=grp&gid=3030915",  # ドラゴン
+            "https://torecaplaza55.com/?mode=grp&gid=3030917",  # 無色
+            "https://torecaplaza55.com/?mode=grp&gid=3030990",  # セール
+            "https://torecaplaza55.com/?mode=grp&gid=3126017",  # 訳アリセール
+        ],
         shop_type="sell_only",
         parser="torecaplaza55",
     ),
@@ -470,12 +485,17 @@ SHOPS: List[ShopConfig] = [
         shop_name="福福トレカコレクション",
         # WebSearchで発見(2026-09-04)。既存の福福トレカ
         # (pokemon.fukufukutoreka.com)とは別ドメインの通販サイト。
-        # debug_fetchで実HTML確認済み: トップページは全ジャンル混在
-        # (遊戯王等含む)で.c-itemsも2件のみだった。ポケモンカード専用
-        # カテゴリページ(?mode=cate&cbid=2929264&csid=0)を発見したため、
-        # そちらに変更して再検証する。
+        # debug_fetchで実HTML確認済み: ポケモンカード専用カテゴリページ
+        # (?mode=cate&cbid=2929264&csid=0)で全78件・実データ12件抽出
+        # できることを確認済み(div.c-items配下の`a[href^="?pid="]`単位)。
+        # 1ページ12件・全7ページのページネーションのため、全件拾うために
+        # page=2〜7をsell_urlsに列挙する。
         buy_url=None,
-        sell_url="https://fukufukucollect.shop-pro.jp/?mode=cate&cbid=2929264&csid=0&sort=p",
+        sell_url=None,
+        sell_urls=[
+            f"https://fukufukucollect.shop-pro.jp/?mode=cate&cbid=2929264&csid=0&sort=p&page={i}"
+            for i in range(1, 8)
+        ],
         shop_type="sell_only",
         parser="fukufuku_collect",
     ),
