@@ -398,4 +398,17 @@ SHOPS: List[ShopConfig] = [
         shop_type="sell_only",
         parser="cb_torecolo",
     ),
+    ShopConfig(
+        shop_id="snkrdunk",
+        shop_name="スニーカーダンク",
+        # ユーザーからの指摘で追加調査(2026-09-04)。フリマ型の真贋鑑定付き
+        # 二次流通プラットフォーム(スニーカー・トレカ等)。ポケモンカードの
+        # 検索結果ページ(出品ベースの相場)が候補。大手プラットフォームの
+        # ためbot対策(Cloudflare等)やJSレンダリング必須の可能性が高い。
+        # 実HTML構造は未検証(debug_fetch待ち)。
+        buy_url=None,
+        sell_url="https://snkrdunk.com/search?keywords=%E3%83%9D%E3%82%B1%E3%83%A2%E3%83%B3%E3%82%AB%E3%83%BC%E3%83%89%E3%82%B2%E3%83%BC%E3%83%A0%28%E3%83%9D%E3%82%B1%E3%82%AB%29+%E3%83%88%E3%83%AC%E3%82%AB&searchCategoryIds=6&brandIds=pokemon&sort=popular",
+        shop_type="sell_only",
+        parser="snkrdunk",
+    ),
 ]
