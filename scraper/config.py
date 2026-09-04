@@ -72,7 +72,9 @@ SHOPS: List[ShopConfig] = [
         shop_id="cardrush",
         shop_name="カードラッシュ",
         # buy_url(cardrush.media)は403 Forbidden(2026-09-03確認、ヘッダー
-        # 改善後も変化なし)。bot対策による拒否と判断し除外(None化)。
+        # 改善後も変化なし)。bot対策による拒否と判断し一旦除外していたが、
+        # 2026-09-04 WebSearchで詳細なクエリパラメータ付きURL(ソート・絞り込み
+        # 条件付き)を確認したため、念のため再検証のためbuy_urlsに追加する。
         # 2026-09-03 WebSearchで、同じcardrush-pokemon.jpドメイン内に
         # 「買取リスト」ページ群(/page/38,39,40,41,42,45)を発見したが、
         # 価格表自体はページ内に無くGoogleスプレッドシートの公開ビュー
@@ -81,8 +83,12 @@ SHOPS: List[ShopConfig] = [
         # エクスポート(/pub?output=csv)なら静的取得はできたものの、中身が
         # 全シート"#REF!"エラーまたは「只今準備中です」で実データが入って
         # いなかった(2026-09-03、シート自体が壊れている/未整備と判断)。
-        # 買取側はこれ以上の対応方法が無いため対象外とし、sell_urlのみ運用。
+        # ページ内埋め込みでの取得はこれ以上の対応方法が無いため、
+        # cardrush.media(買取専用サイト)側のURLを直接再検証する。
         buy_url=None,
+        buy_urls=[
+            "https://cardrush.media/pokemon/buying_prices?displayMode=%E3%83%AA%E3%82%B9%E3%83%88&limit=100&sort%5Bkey%5D=amount&sort%5Border%5D=desc",
+        ],
         sell_url="https://www.cardrush-pokemon.jp/",  # TODO要検証: トップページの一部のみ
         shop_type="both",
         parser="cardrush",
@@ -243,5 +249,131 @@ SHOPS: List[ShopConfig] = [
         sell_url=None,
         shop_type="buy_only",
         parser="netoff_moetaku",
+    ),
+    ShopConfig(
+        shop_id="pokeking",
+        shop_name="ポケキング",
+        # WebSearchで発見(2026-09-04)。PSA鑑定品含むポケモンカード買取
+        # 専門店。実HTML構造は未検証(debug_fetch待ち)。
+        buy_url="https://pokeking.sangatuusagi.com/card/",
+        sell_url=None,
+        shop_type="buy_only",
+        parser="pokeking",
+    ),
+    ShopConfig(
+        shop_id="toysking",
+        shop_name="トイズキング",
+        # WebSearchで発見(2026-09-04)。高額買取専門店。買取価格表は別
+        # ドメイン(kakaku.yamato-gp.net)の可能性があるため両方をbuy_urlsに
+        # 追加。実HTML構造は未検証(debug_fetch待ち)。
+        buy_url=None,
+        buy_urls=[
+            "https://www.toysking.jp/archive/pokemon-card.html",
+            "https://kakaku.yamato-gp.net/",
+        ],
+        sell_url=None,
+        shop_type="buy_only",
+        parser="toysking",
+    ),
+    ShopConfig(
+        shop_id="otakarasouko",
+        shop_name="お宝創庫",
+        # WebSearchで発見(2026-09-04)。実HTML構造は未検証(debug_fetch待ち)。
+        buy_url="https://www.otakarasouko.com/pokemoncard/",
+        sell_url=None,
+        shop_type="buy_only",
+        parser="otakarasouko",
+    ),
+    ShopConfig(
+        shop_id="clove_base",
+        shop_name="Clove Base",
+        # WebSearchで発見(2026-09-04)。店舗買取の価格表ページ。実HTML構造は
+        # 未検証(debug_fetch待ち)。
+        buy_url="https://base.clove.jp/prices/pokemon",
+        sell_url=None,
+        shop_type="buy_only",
+        parser="clove_base",
+    ),
+    ShopConfig(
+        shop_id="t_machine",
+        shop_name="たいむましん",
+        # WebSearchで発見(2026-09-04)。旧裏面(絶版・初期カード)専門の買取
+        # 価格表。高額カードが多いジャンルのため50万円しきい値との相性が
+        # 良いと期待。実HTML構造は未検証(debug_fetch待ち)。
+        buy_url="https://t-machine.jp/tradingcard/pokemon/fd/",
+        sell_url=None,
+        shop_type="buy_only",
+        parser="t_machine",
+    ),
+    ShopConfig(
+        shop_id="otachu",
+        shop_name="オタチュウ",
+        # WebSearchで発見(2026-09-04)。PSA10鑑定品専門の買取価格表。高額
+        # カードが多いジャンルのため50万円しきい値との相性が良いと期待。
+        # 実HTML構造は未検証(debug_fetch待ち)。
+        buy_url="https://otachu-akiba.com/1gocard/buying_price/psa-pokemon-cards/",
+        sell_url=None,
+        shop_type="buy_only",
+        parser="otachu",
+    ),
+    ShopConfig(
+        shop_id="fukufuku_toreca",
+        shop_name="福福トレカ",
+        # WebSearchで発見(2026-09-04)。ポケモンカード通販(販売)サイト。
+        # 実HTML構造は未検証(debug_fetch待ち)。
+        buy_url=None,
+        sell_url="https://pokemon.fukufukutoreka.com/",
+        shop_type="sell_only",
+        parser="fukufuku_toreca",
+    ),
+    ShopConfig(
+        shop_id="toreca_zipangu",
+        shop_name="トレカジパング",
+        # WebSearchで発見(2026-09-04)。ポケモンカード通販(販売)サイト。
+        # 実HTML構造は未検証(debug_fetch待ち)。
+        buy_url=None,
+        sell_url="https://tracazipangu.com/",
+        shop_type="sell_only",
+        parser="toreca_zipangu",
+    ),
+    ShopConfig(
+        shop_id="torema",
+        shop_name="トレマ",
+        # WebSearchで発見(2026-09-04)。ポケモンカード通販(販売)サイト。
+        # 実HTML構造は未検証(debug_fetch待ち)。
+        buy_url=None,
+        sell_url="https://www.tcgmp.jp/product/group/index?id=61",
+        shop_type="sell_only",
+        parser="torema",
+    ),
+    ShopConfig(
+        shop_id="bee_honpo",
+        shop_name="Bee本舗",
+        # WebSearchで発見(2026-09-04)。ポケモンカード通販(販売)サイト。
+        # 実HTML構造は未検証(debug_fetch待ち)。
+        buy_url=None,
+        sell_url="https://www.bee-honpo.com/view/category/ct63",
+        shop_type="sell_only",
+        parser="bee_honpo",
+    ),
+    ShopConfig(
+        shop_id="toreca_camp",
+        shop_name="トレカキャンプ",
+        # WebSearchで発見(2026-09-04)。ポケモンカード通販(販売)サイト。
+        # 実HTML構造は未検証(debug_fetch待ち)。
+        buy_url=None,
+        sell_url="https://torecacamp-pokemon.com/",
+        shop_type="sell_only",
+        parser="toreca_camp",
+    ),
+    ShopConfig(
+        shop_id="cb_torecolo",
+        shop_name="CBトレコロ",
+        # WebSearchで発見(2026-09-04)。ポケモンカード通販(販売)サイト。
+        # 実HTML構造は未検証(debug_fetch待ち)。
+        buy_url=None,
+        sell_url="https://www.torecolo.jp/shop/c/c1074/",
+        shop_type="sell_only",
+        parser="cb_torecolo",
     ),
 ]
