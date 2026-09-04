@@ -72,9 +72,10 @@ SHOPS: List[ShopConfig] = [
         shop_id="cardrush",
         shop_name="カードラッシュ",
         # buy_url(cardrush.media)は403 Forbidden(2026-09-03確認、ヘッダー
-        # 改善後も変化なし)。bot対策による拒否と判断し一旦除外していたが、
-        # 2026-09-04 WebSearchで詳細なクエリパラメータ付きURL(ソート・絞り込み
-        # 条件付き)を確認したため、念のため再検証のためbuy_urlsに追加する。
+        # 改善後も変化なし)。2026-09-04にクエリパラメータ付きの詳細URL
+        # (ソート・絞り込み条件付き)で再検証したが、やはり403 Forbiddenで
+        # 拒否された。bot対策による明確な拒否と判断し、これ以上の再検証は
+        # 行わず対象除外(None化)を確定する。
         # 2026-09-03 WebSearchで、同じcardrush-pokemon.jpドメイン内に
         # 「買取リスト」ページ群(/page/38,39,40,41,42,45)を発見したが、
         # 価格表自体はページ内に無くGoogleスプレッドシートの公開ビュー
@@ -83,12 +84,8 @@ SHOPS: List[ShopConfig] = [
         # エクスポート(/pub?output=csv)なら静的取得はできたものの、中身が
         # 全シート"#REF!"エラーまたは「只今準備中です」で実データが入って
         # いなかった(2026-09-03、シート自体が壊れている/未整備と判断)。
-        # ページ内埋め込みでの取得はこれ以上の対応方法が無いため、
-        # cardrush.media(買取専用サイト)側のURLを直接再検証する。
+        # 買取側はこれ以上の対応方法が無いため対象外とし、sell_urlのみ運用。
         buy_url=None,
-        buy_urls=[
-            "https://cardrush.media/pokemon/buying_prices?displayMode=%E3%83%AA%E3%82%B9%E3%83%88&limit=100&sort%5Bkey%5D=amount&sort%5Border%5D=desc",
-        ],
         sell_url="https://www.cardrush-pokemon.jp/",  # TODO要検証: トップページの一部のみ
         shop_type="both",
         parser="cardrush",
@@ -263,14 +260,14 @@ SHOPS: List[ShopConfig] = [
     ShopConfig(
         shop_id="toysking",
         shop_name="トイズキング",
-        # WebSearchで発見(2026-09-04)。高額買取専門店。買取価格表は別
-        # ドメイン(kakaku.yamato-gp.net)の可能性があるため両方をbuy_urlsに
-        # 追加。実HTML構造は未検証(debug_fetch待ち)。
-        buy_url=None,
-        buy_urls=[
-            "https://www.toysking.jp/archive/pokemon-card.html",
-            "https://kakaku.yamato-gp.net/",
-        ],
+        # WebSearchで発見(2026-09-04)。debug_fetchで実HTML確認済み: 買取
+        # 価格表は別ドメイン(kakaku.yamato-gp.net)の価格表一覧ページに
+        # あり、そこから「ポケモンカード買取価格表」のリンク先として、
+        # S3上に直接公開されているJSON
+        # (https://manage-s3.s3.amazonaws.com/static/dist/pricelist/toysking/toysking/pokeca.json)
+        # を発見した(hareruya2と同様のパターン)。静的取得できるかは
+        # 次回debug_fetchで要確認。
+        buy_url="https://manage-s3.s3.amazonaws.com/static/dist/pricelist/toysking/toysking/pokeca.json",
         sell_url=None,
         shop_type="buy_only",
         parser="toysking",
@@ -329,20 +326,23 @@ SHOPS: List[ShopConfig] = [
     ShopConfig(
         shop_id="toreca_zipangu",
         shop_name="トレカジパング",
-        # WebSearchで発見(2026-09-04)。ポケモンカード通販(販売)サイト。
-        # 実HTML構造は未検証(debug_fetch待ち)。
+        # WebSearchで発見(2026-09-04)。debug_fetchで実HTML確認済み:
+        # トップページ(Shopify製ストア)には商品一覧が無くコレクション
+        # ページ側にあると判断し、Shopify標準の全商品一覧URL
+        # (/collections/all)に変更して再検証する。
         buy_url=None,
-        sell_url="https://tracazipangu.com/",
+        sell_url="https://tracazipangu.com/collections/all",
         shop_type="sell_only",
         parser="toreca_zipangu",
     ),
     ShopConfig(
         shop_id="torema",
         shop_name="トレマ",
-        # WebSearchで発見(2026-09-04)。ポケモンカード通販(販売)サイト。
-        # 実HTML構造は未検証(debug_fetch待ち)。
+        # WebSearchで発見(2026-09-04)。debug_fetchで実アクセスした結果
+        # 403 Forbiddenで拒否された。他の除外ショップ同様、bot対策による
+        # 明確な拒否と判断しヘッダー偽装等での回避は行わず除外(None化)。
         buy_url=None,
-        sell_url="https://www.tcgmp.jp/product/group/index?id=61",
+        sell_url=None,
         shop_type="sell_only",
         parser="torema",
     ),
