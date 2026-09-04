@@ -349,11 +349,15 @@ SHOPS: List[ShopConfig] = [
     ShopConfig(
         shop_id="bee_honpo",
         shop_name="Bee本舗",
-        # WebSearchで発見(2026-09-04)。ポケモンカード通販(販売)サイト。
-        # 実HTML構造は未検証(debug_fetch待ち)。
+        # WebSearchで発見(2026-09-04)。debug_fetch実行時、取得したページ内に
+        # 実際のものと思われるAmazon OAuthクライアントID/シークレットが
+        # 埋め込まれておりGitHub Push Protectionでコミット自体がブロック
+        # された(該当ページ自体の実装ミスによる情報漏洩と推測)。他社の
+        # 認証情報をリポジトリに取り込むリスクがあるため、このショップは
+        # 対象から除外する(None化。debug_html保存対象にもしない)。
         buy_url=None,
-        sell_url="https://www.bee-honpo.com/view/category/ct63",
-        shop_type="sell_only",
+        sell_url=None,
+        shop_type="buy_only",
         parser="bee_honpo",
     ),
     ShopConfig(
