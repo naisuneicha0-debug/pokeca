@@ -250,8 +250,10 @@ SHOPS: List[ShopConfig] = [
     ShopConfig(
         shop_id="pokeking",
         shop_name="ポケキング",
-        # WebSearchで発見(2026-09-04)。PSA鑑定品含むポケモンカード買取
-        # 専門店。実HTML構造は未検証(debug_fetch待ち)。
+        # WebSearchで発見(2026-09-04)。debug_fetchで実HTML確認済み:
+        # WordPressブロックエディタのdiv.wp-block-column単位でカード名・
+        # 型番・買取価格が構造化されている。実データ9件抽出できることを
+        # 確認済み(ピックアップ商品のみで全カード網羅ではない)。
         buy_url="https://pokeking.sangatuusagi.com/card/",
         sell_url=None,
         shop_type="buy_only",
@@ -265,8 +267,9 @@ SHOPS: List[ShopConfig] = [
         # あり、そこから「ポケモンカード買取価格表」のリンク先として、
         # S3上に直接公開されているJSON
         # (https://manage-s3.s3.amazonaws.com/static/dist/pricelist/toysking/toysking/pokeca.json)
-        # を発見した(hareruya2と同様のパターン)。静的取得できるかは
-        # 次回debug_fetchで要確認。
+        # を発見した(hareruya2と同様のパターン)。静的取得でき実データ3件
+        # 抽出できることを確認済み(2026-09-04。ページあたりの件数が
+        # 少なくピックアップ商品のみと思われる)。
         buy_url="https://manage-s3.s3.amazonaws.com/static/dist/pricelist/toysking/toysking/pokeca.json",
         sell_url=None,
         shop_type="buy_only",
@@ -275,7 +278,11 @@ SHOPS: List[ShopConfig] = [
     ShopConfig(
         shop_id="otakarasouko",
         shop_name="お宝創庫",
-        # WebSearchで発見(2026-09-04)。実HTML構造は未検証(debug_fetch待ち)。
+        # WebSearchで発見(2026-09-04)。debug_fetchで実HTML確認済み:
+        # ul.bl_product単位で商品(全ジャンル混在)が構造化されており、
+        # カテゴリーに「ポケモン」を含むものだけ抽出して実データ1,934件
+        # 抽出できることを確認済み。うち5件が50万円以上(最高180万円)と、
+        # 高額カードの収集元として非常に有力。
         buy_url="https://www.otakarasouko.com/pokemoncard/",
         sell_url=None,
         shop_type="buy_only",
@@ -284,8 +291,11 @@ SHOPS: List[ShopConfig] = [
     ShopConfig(
         shop_id="clove_base",
         shop_name="Clove Base",
-        # WebSearchで発見(2026-09-04)。店舗買取の価格表ページ。実HTML構造は
-        # 未検証(debug_fetch待ち)。
+        # WebSearchで発見(2026-09-04)。店舗買取の価格表ページ。debug_fetchで
+        # 2回アクセスしたがいずれも429 Too Many Requestsで拒否された。他の
+        # ショップへのリクエストの合間の単発アクセスでも継続して429になる
+        # ため、レート制限が厳しいサイトと判断。しばらく間隔を空けて再検証
+        # する余地はあるが、現時点では未解決のまま保留。
         buy_url="https://base.clove.jp/prices/pokemon",
         sell_url=None,
         shop_type="buy_only",
@@ -295,8 +305,9 @@ SHOPS: List[ShopConfig] = [
         shop_id="t_machine",
         shop_name="たいむましん",
         # WebSearchで発見(2026-09-04)。旧裏面(絶版・初期カード)専門の買取
-        # 価格表。高額カードが多いジャンルのため50万円しきい値との相性が
-        # 良いと期待。実HTML構造は未検証(debug_fetch待ち)。
+        # 価格表。debug_fetchで実HTML確認済み: table#tbl_modern内の
+        # tr.pokemon行で実データ94件抽出できることを確認済み(最高16万円。
+        # 50万円には届かないが実データとしては有用)。
         buy_url="https://t-machine.jp/tradingcard/pokemon/fd/",
         sell_url=None,
         shop_type="buy_only",
@@ -305,9 +316,11 @@ SHOPS: List[ShopConfig] = [
     ShopConfig(
         shop_id="otachu",
         shop_name="オタチュウ",
-        # WebSearchで発見(2026-09-04)。PSA10鑑定品専門の買取価格表。高額
-        # カードが多いジャンルのため50万円しきい値との相性が良いと期待。
-        # 実HTML構造は未検証(debug_fetch待ち)。
+        # WebSearchで発見(2026-09-04)。PSA10鑑定品専門の買取価格表。
+        # debug_fetchで実HTML確認済み: シリーズ別に複数のtable要素
+        # ([No./レア/カード名/買取金額/更新]の5列)があり、実データ872件
+        # 抽出できることを確認済み。うち20件が50万円以上(最高220万円)と
+        # 高額カードの収集元として非常に有力(お宝創庫に次ぐ収穫)。
         buy_url="https://otachu-akiba.com/1gocard/buying_price/psa-pokemon-cards/",
         sell_url=None,
         shop_type="buy_only",
@@ -316,8 +329,9 @@ SHOPS: List[ShopConfig] = [
     ShopConfig(
         shop_id="fukufuku_toreca",
         shop_name="福福トレカ",
-        # WebSearchで発見(2026-09-04)。ポケモンカード通販(販売)サイト。
-        # 実HTML構造は未検証(debug_fetch待ち)。
+        # WebSearchで発見(2026-09-04)。debug_fetchで実HTML確認済み:
+        # .card-item単位で商品(カード名・型番・レアリティ・価格)が構造化
+        # されており、実データ64件抽出できることを確認済み。
         buy_url=None,
         sell_url="https://pokemon.fukufukutoreka.com/",
         shop_type="sell_only",
@@ -327,9 +341,10 @@ SHOPS: List[ShopConfig] = [
         shop_id="toreca_zipangu",
         shop_name="トレカジパング",
         # WebSearchで発見(2026-09-04)。debug_fetchで実HTML確認済み:
-        # トップページ(Shopify製ストア)には商品一覧が無くコレクション
-        # ページ側にあると判断し、Shopify標準の全商品一覧URL
-        # (/collections/all)に変更して再検証する。
+        # トップページ(Shopify製ストア)には商品一覧が無かったため、
+        # Shopify標準の全商品一覧URL(/collections/all)に変更したところ、
+        # トレカキャンプと同じShopifyテーマ構造(.product-item)で実データ
+        # 24件抽出できることを確認済み(パーサーはtoreca_campを再利用)。
         buy_url=None,
         sell_url="https://tracazipangu.com/collections/all",
         shop_type="sell_only",
@@ -363,8 +378,10 @@ SHOPS: List[ShopConfig] = [
     ShopConfig(
         shop_id="toreca_camp",
         shop_name="トレカキャンプ",
-        # WebSearchで発見(2026-09-04)。ポケモンカード通販(販売)サイト。
-        # 実HTML構造は未検証(debug_fetch待ち)。
+        # WebSearchで発見(2026-09-04)。debug_fetchで実HTML確認済み:
+        # Shopify製ストアで.product-item単位に構造化されており、実データ
+        # 65件抽出できることを確認済み(価格は状態別レンジ表記のため
+        # 上限値を採用)。
         buy_url=None,
         sell_url="https://torecacamp-pokemon.com/",
         shop_type="sell_only",
@@ -373,8 +390,9 @@ SHOPS: List[ShopConfig] = [
     ShopConfig(
         shop_id="cb_torecolo",
         shop_name="CBトレコロ",
-        # WebSearchで発見(2026-09-04)。ポケモンカード通販(販売)サイト。
-        # 実HTML構造は未検証(debug_fetch待ち)。
+        # WebSearchで発見(2026-09-04)。debug_fetchで実HTML確認済み:
+        # MakeShop系ECテンプレート(.js-enhanced-ecommerce-item)で実データ
+        # 25件抽出できることを確認済み。
         buy_url=None,
         sell_url="https://www.torecolo.jp/shop/c/c1074/",
         shop_type="sell_only",

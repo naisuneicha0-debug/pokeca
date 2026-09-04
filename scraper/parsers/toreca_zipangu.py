@@ -1,13 +1,13 @@
-"""toreca_zipangu用パーサー(買取/販売価格)。
+"""トレカジパング用パーサー(販売価格のみ)。
 
-実サイトのHTML構造が未検証のため、汎用テキストパターンマッチ
-(generic_text_list_parse)を暫定使用している。GitHub Actions実行後の
-ログ・取得結果を見て、専用のセレクタベース実装に置き換えること。
+デバッグ用HTML取得(debug_fetch)で実構造を確認済み(2026-09-04)。
+トレカキャンプ(toreca_camp)と同じShopifyテーマ(.product-item構造)を
+使っているため、そちらのパーサーをそのまま再利用する。
 """
 from typing import List, Dict
 
-from .base import generic_text_list_parse
+from .toreca_camp import parse as _parse
 
 
 def parse(html: str, source_site: str, direction: str) -> List[Dict]:
-    return generic_text_list_parse(html, source_site, direction)
+    return _parse(html, source_site, direction)
