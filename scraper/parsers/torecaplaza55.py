@@ -1,8 +1,11 @@
 """トレカプラザ55用パーサー(販売価格のみ)。
 
 デバッグ用HTML取得(debug_fetch)で実構造を確認済み(2026-09-04)。
-.c-item-list__item単位で商品(全ジャンル混在)が構造化されており、
-カード名末尾の[ポケモンカードゲーム]表記で絞り込む。
+.c-item-list__item単位で商品が構造化されている。当初はトップページ
+(全ジャンル混在)を想定してカード名末尾の[ポケモンカードゲーム]表記で
+絞り込んでいたが、実際に運用しているタイプ別ページ・グループページは
+ポケモンカードのみのページでその表記自体が付かないため、フィルタは
+外している(config.py側で対象URLをポケモンカード専用ページに限定)。
 """
 from __future__ import annotations
 
@@ -23,8 +26,6 @@ def parse(html: str, source_site: str, direction: str) -> List[Dict]:
         if not ttl_el:
             continue
         card_name = ttl_el.get_text(strip=True)
-        if "ポケモンカードゲーム" not in card_name:
-            continue
 
         price_el = item.select_one(".c-item-list__price")
         if not price_el:
