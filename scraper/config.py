@@ -410,7 +410,13 @@ SHOPS: List[ShopConfig] = [
         # (1ページ目のみ。ページネーションで増やせる可能性はあるが今回は
         # 未対応)。
         buy_url=None,
-        sell_url="https://snkrdunk.com/search?keywords=%E3%83%9D%E3%82%B1%E3%83%A2%E3%83%B3%E3%82%AB%E3%83%BC%E3%83%89%E3%82%B2%E3%83%BC%E3%83%A0%28%E3%83%9D%E3%82%B1%E3%82%AB%29+%E3%83%88%E3%83%AC%E3%82%AB&searchCategoryIds=6&brandIds=pokemon&sort=popular",
+        sell_url=None,
+        sell_urls=[
+            "https://snkrdunk.com/search?keywords=%E3%83%9D%E3%82%B1%E3%83%A2%E3%83%B3%E3%82%AB%E3%83%BC%E3%83%89%E3%82%B2%E3%83%BC%E3%83%A0%28%E3%83%9D%E3%82%B1%E3%82%AB%29+%E3%83%88%E3%83%AC%E3%82%AB&searchCategoryIds=6&brandIds=pokemon&sort=popular",
+            # ユーザー提示の個別商品ページ。検証用(2026-09-04)。読み取れる
+            # か・一覧ページと比べてどんな情報が追加で取れるか確認する目的。
+            "https://snkrdunk.com/apparels/663636",
+        ],
         shop_type="sell_only",
         parser="snkrdunk",
     ),
