@@ -1,0 +1,2 @@
+URL: https://www.otakarasouko.com/pokemoncard/
+エラー: HTTPSConnectionPool(host='www.otakarasouko.com', port=443): Max retries exceeded with url: /pokemoncard/ (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.otakarasouko.com', port=443) at 0x7fd3318c0850>, 'Connection to www.otakarasouko.com timed out. (connect timeout=20)'))

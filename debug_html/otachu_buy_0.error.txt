@@ -1,0 +1,2 @@
+URL: https://otachu-akiba.com/1gocard/buying_price/psa-pokemon-cards/
+エラー: HTTPSConnectionPool(host='otachu-akiba.com', port=443): Max retries exceeded with url: /1gocard/buying_price/psa-pokemon-cards/ (Caused by ConnectTimeoutError(<HTTPSConnection(host='otachu-akiba.com', port=443) at 0x7fd3316f0310>, 'Connection to otachu-akiba.com timed out. (connect timeout=20)'))

@@ -1,0 +1,2 @@
+URL: https://t-machine.jp/tradingcard/pokemon/fd/
+エラー: HTTPSConnectionPool(host='t-machine.jp', port=443): Max retries exceeded with url: /tradingcard/pokemon/fd/ (Caused by ConnectTimeoutError(<HTTPSConnection(host='t-machine.jp', port=443) at 0x7fd3318c3fd0>, 'Connection to t-machine.jp timed out. (connect timeout=20)'))

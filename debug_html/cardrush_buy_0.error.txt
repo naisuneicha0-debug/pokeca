@@ -1,2 +1,2 @@
-URL: https://cardrush.media/pokemon/buying_prices
-エラー: 403 Client Error: Forbidden for url: https://cardrush.media/pokemon/buying_prices
+URL: https://cardrush.media/pokemon/buying_prices?displayMode=%E3%83%AA%E3%82%B9%E3%83%88&limit=100&sort%5Bkey%5D=amount&sort%5Border%5D=desc
+エラー: 403 Client Error: Forbidden for url: https://cardrush.media/pokemon/buying_prices?displayMode=%E3%83%AA%E3%82%B9%E3%83%88&limit=100&sort%5Bkey%5D=amount&sort%5Border%5D=desc

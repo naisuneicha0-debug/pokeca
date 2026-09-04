@@ -1,0 +1,2 @@
+URL: https://base.clove.jp/prices/pokemon
+エラー: 429 Client Error: Too Many Requests for url: https://base.clove.jp/prices/pokemon

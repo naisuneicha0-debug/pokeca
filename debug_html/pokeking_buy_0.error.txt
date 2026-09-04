@@ -1,0 +1,2 @@
+URL: https://pokeking.sangatuusagi.com/card/
+エラー: HTTPSConnectionPool(host='pokeking.sangatuusagi.com', port=443): Max retries exceeded with url: /card/ (Caused by ConnectTimeoutError(<HTTPSConnection(host='pokeking.sangatuusagi.com', port=443) at 0x7fd3316e1a10>, 'Connection to pokeking.sangatuusagi.com timed out. (connect timeout=20)'))

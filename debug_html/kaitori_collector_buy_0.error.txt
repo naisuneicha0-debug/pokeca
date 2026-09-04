@@ -1,0 +1,2 @@
+URL: https://kaitoricollector.com/card-kind/pokemoncard/price/
+エラー: HTTPSConnectionPool(host='kaitoricollector.com', port=443): Max retries exceeded with url: /card-kind/pokemoncard/price/ (Caused by ConnectTimeoutError(<HTTPSConnection(host='kaitoricollector.com', port=443) at 0x7fd3316d3510>, 'Connection to kaitoricollector.com timed out. (connect timeout=20)'))

@@ -1,0 +1,2 @@
+URL: https://pokemon.fukufukutoreka.com/
+エラー: HTTPSConnectionPool(host='pokemon.fukufukutoreka.com', port=443): Max retries exceeded with url: / (Caused by ConnectTimeoutError(<HTTPSConnection(host='pokemon.fukufukutoreka.com', port=443) at 0x7fd3316e3790>, 'Connection to pokemon.fukufukutoreka.com timed out. (connect timeout=20)'))
