@@ -413,11 +413,13 @@ SHOPS: List[ShopConfig] = [
         sell_url=None,
         sell_urls=[
             "https://snkrdunk.com/search?keywords=%E3%83%9D%E3%82%B1%E3%83%A2%E3%83%B3%E3%82%AB%E3%83%BC%E3%83%89%E3%82%B2%E3%83%BC%E3%83%A0%28%E3%83%9D%E3%82%B1%E3%82%AB%29+%E3%83%88%E3%83%AC%E3%82%AB&searchCategoryIds=6&brandIds=pokemon&sort=popular",
-            # ユーザー提示の個別商品ページ。検証用(2026-09-04)。読み取れる
-            # か・一覧ページと比べてどんな情報が追加で取れるか確認する目的。
+            # ユーザー提示の個別商品ページ。検証用(2026-09-04)。静的取得では
+            # ページタイトル・カード名・型番は読めたが、状態別の出品価格
+            # 一覧はJSレンダリング必須で空だった。render_js=Trueで再検証。
             "https://snkrdunk.com/apparels/663636",
         ],
         shop_type="sell_only",
         parser="snkrdunk",
+        render_js=True,
     ),
 ]
