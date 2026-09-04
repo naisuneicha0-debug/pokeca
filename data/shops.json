@@ -16,9 +16,9 @@
   {
     "shop_id": "c_labo",
     "shop_name": "カードラボ",
-    "buy_url": null,
+    "buy_url": "https://www.c-labo-kaitori.jp/product-group/341",
     "sell_url": "https://www.c-labo-online.jp/product-group/2413",
-    "shop_type": "sell_only"
+    "shop_type": "both"
   },
   {
     "shop_id": "hareruya2",
@@ -63,10 +63,129 @@
     "shop_type": "buy_only"
   },
   {
+    "shop_id": "dorasuta",
+    "shop_name": "ドラゴンスター(ネット買取)",
+    "buy_url": null,
+    "sell_url": null,
+    "shop_type": "buy_only"
+  },
+  {
+    "shop_id": "ka_nabell",
+    "shop_name": "カーナベル",
+    "buy_url": null,
+    "sell_url": null,
+    "shop_type": "buy_only"
+  },
+  {
+    "shop_id": "hbst",
+    "shop_name": "ホビーステーション",
+    "buy_url": null,
+    "sell_url": null,
+    "shop_type": "buy_only"
+  },
+  {
+    "shop_id": "furuichi",
+    "shop_name": "古本市場(ふるいち)",
+    "buy_url": "https://www.furu1.net/kaitori/sell_toreca/pk",
+    "sell_url": null,
+    "shop_type": "buy_only"
+  },
+  {
     "shop_id": "netoff_moetaku",
     "shop_name": "ネットオフ もえたく!",
     "buy_url": null,
     "sell_url": null,
     "shop_type": "buy_only"
+  },
+  {
+    "shop_id": "pokeking",
+    "shop_name": "ポケキング",
+    "buy_url": "https://pokeking.sangatuusagi.com/card/",
+    "sell_url": null,
+    "shop_type": "buy_only"
+  },
+  {
+    "shop_id": "toysking",
+    "shop_name": "トイズキング",
+    "buy_url": "https://manage-s3.s3.amazonaws.com/static/dist/pricelist/toysking/toysking/pokeca.json",
+    "sell_url": null,
+    "shop_type": "buy_only"
+  },
+  {
+    "shop_id": "otakarasouko",
+    "shop_name": "お宝創庫",
+    "buy_url": "https://www.otakarasouko.com/pokemoncard/",
+    "sell_url": null,
+    "shop_type": "buy_only"
+  },
+  {
+    "shop_id": "clove_base",
+    "shop_name": "Clove Base",
+    "buy_url": "https://base.clove.jp/prices/pokemon",
+    "sell_url": null,
+    "shop_type": "buy_only"
+  },
+  {
+    "shop_id": "t_machine",
+    "shop_name": "たいむましん",
+    "buy_url": "https://t-machine.jp/tradingcard/pokemon/fd/",
+    "sell_url": null,
+    "shop_type": "buy_only"
+  },
+  {
+    "shop_id": "otachu",
+    "shop_name": "オタチュウ",
+    "buy_url": "https://otachu-akiba.com/1gocard/buying_price/psa-pokemon-cards/",
+    "sell_url": null,
+    "shop_type": "buy_only"
+  },
+  {
+    "shop_id": "fukufuku_toreca",
+    "shop_name": "福福トレカ",
+    "buy_url": null,
+    "sell_url": "https://pokemon.fukufukutoreka.com/",
+    "shop_type": "sell_only"
+  },
+  {
+    "shop_id": "toreca_zipangu",
+    "shop_name": "トレカジパング",
+    "buy_url": null,
+    "sell_url": "https://tracazipangu.com/collections/all",
+    "shop_type": "sell_only"
+  },
+  {
+    "shop_id": "torema",
+    "shop_name": "トレマ",
+    "buy_url": null,
+    "sell_url": null,
+    "shop_type": "sell_only"
+  },
+  {
+    "shop_id": "bee_honpo",
+    "shop_name": "Bee本舗",
+    "buy_url": null,
+    "sell_url": null,
+    "shop_type": "buy_only"
+  },
+  {
+    "shop_id": "toreca_camp",
+    "shop_name": "トレカキャンプ",
+    "buy_url": null,
+    "sell_url": "https://torecacamp-pokemon.com/",
+    "shop_type": "sell_only"
+  },
+  {
+    "shop_id": "cb_torecolo",
+    "shop_name": "CBトレコロ",
+    "buy_url": null,
+    "sell_url": "https://www.torecolo.jp/shop/c/c1074/",
+    "shop_type": "sell_only"
+  },
+  {
+    "shop_id": "snkrdunk",
+    "shop_name": "スニーカーダンク",
+    "buy_url": null,
+    "sell_url": "https://snkrdunk.com/search?keywords=%E3%83%9D%E3%82%B1%E3%83%A2%E3%83%B3%E3%82%AB%E3%83%BC%E3%83%89%E3%82%B2%E3%83%BC%E3%83%A0%28%E3%83%9D%E3%82%B1%E3%82%AB%29+%E3%83%88%E3%83%AC%E3%82%AB&searchCategoryIds=6&brandIds=pokemon&sort=popular",
+    "shop_type": "sell_only"
   }
 ]
