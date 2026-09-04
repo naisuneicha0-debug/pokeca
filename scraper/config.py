@@ -501,4 +501,27 @@ SHOPS: List[ShopConfig] = [
         shop_type="sell_only",
         parser="fukufuku_collect",
     ),
+    ShopConfig(
+        shop_id="fullahead",
+        shop_name="フルアヘッド",
+        # WebSearchで発見(2026-09-04)。ユーザーの要望(販売も50万円以上に
+        # 絞って精査)を受け、PSA鑑定品等の高額カードを扱う通販サイトを
+        # 新規調査。PSA鑑定品専門コーナーが候補。実HTML構造は未検証
+        # (debug_fetch待ち)。買取専用サイト(fullahead-buy.com)とは別
+        # ドメインなので混同しないよう注意。
+        buy_url=None,
+        sell_url="https://pokemon-card-fullahead.com/shopbrand/psacard/",
+        shop_type="sell_only",
+        parser="fullahead",
+    ),
+    ShopConfig(
+        shop_id="japan_toreca",
+        shop_name="Japan-toreca",
+        # WebSearchで発見(2026-09-04)。PSA鑑定品専門コレクションページが
+        # 候補。実HTML構造は未検証(debug_fetch待ち)。
+        buy_url=None,
+        sell_url="https://shop.japan-toreca.com/collections/psa%E9%91%91%E5%AE%9A%E5%93%81",
+        shop_type="sell_only",
+        parser="japan_toreca",
+    ),
 ]
