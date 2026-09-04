@@ -402,24 +402,15 @@ SHOPS: List[ShopConfig] = [
         shop_id="snkrdunk",
         shop_name="スニーカーダンク",
         # ユーザーからの指摘で追加調査(2026-09-04)。フリマ型の真贋鑑定付き
-        # 二次流通プラットフォーム(スニーカー・トレカ等)。debug_fetchで
-        # 実HTML確認済み: bot対策等の拒否は無く静的取得できた。CSS Modules
-        # のハッシュ付きクラス名(ビルドごとに変わりうる)は避け、商品リンク
-        # (`<a href="/apparels/...">`)のaria-label属性から直接カード名・
-        # 型番・価格を抽出する方式で実データ50件抽出できることを確認済み
-        # (1ページ目のみ。ページネーションで増やせる可能性はあるが今回は
-        # 未対応)。
+        # 二次流通プラットフォーム(スニーカー・トレカ等)。実データ抽出は
+        # 技術的に確認済み(検索一覧ページ50件、個別商品ページも
+        # render_js=True + domcontentloaded待機で状態別最安価格まで取得
+        # 可能)。ただしユーザー自身がこのショップのデータは別途直接
+        # 取得する運用にするとのことで、このパイプラインの収集対象からは
+        # 除外する(None化。パーサー実装自体は残す)。
         buy_url=None,
         sell_url=None,
-        sell_urls=[
-            "https://snkrdunk.com/search?keywords=%E3%83%9D%E3%82%B1%E3%83%A2%E3%83%B3%E3%82%AB%E3%83%BC%E3%83%89%E3%82%B2%E3%83%BC%E3%83%A0%28%E3%83%9D%E3%82%B1%E3%82%AB%29+%E3%83%88%E3%83%AC%E3%82%AB&searchCategoryIds=6&brandIds=pokemon&sort=popular",
-            # ユーザー提示の個別商品ページ。検証用(2026-09-04)。静的取得では
-            # ページタイトル・カード名・型番は読めたが、状態別の出品価格
-            # 一覧はJSレンダリング必須で空だった。render_js=Trueで再検証。
-            "https://snkrdunk.com/apparels/663636",
-        ],
         shop_type="sell_only",
         parser="snkrdunk",
-        render_js=True,
     ),
 ]
