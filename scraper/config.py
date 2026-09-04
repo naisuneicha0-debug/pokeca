@@ -413,4 +413,58 @@ SHOPS: List[ShopConfig] = [
         shop_type="sell_only",
         parser="snkrdunk",
     ),
+    ShopConfig(
+        shop_id="fullcomp_shop",
+        shop_name="フルコンプ ONLINE SHOP",
+        # WebSearchで発見(2026-09-04)。既存のフルコンプ(買取: fullcomp.jp)
+        # とは別ドメインの通販(販売)サイト。実HTML構造は未検証
+        # (debug_fetch待ち)。
+        buy_url=None,
+        sell_url="https://shopping.fullcomp.jp/collections/pokemon",
+        shop_type="sell_only",
+        parser="fullcomp_shop",
+    ),
+    ShopConfig(
+        shop_id="hobbystation_single",
+        shop_name="ホビーステーション シングル通販店",
+        # WebSearchで発見(2026-09-04)。既存で除外したホビーステーション
+        # (hbst.net、買取導線なしで除外)とは別ドメインの通販専用サイト。
+        # 実HTML構造は未検証(debug_fetch待ち)。
+        buy_url=None,
+        sell_url="https://www.hobbystation-single.jp/",
+        shop_type="sell_only",
+        parser="hobbystation_single",
+    ),
+    ShopConfig(
+        shop_id="torecaplaza55",
+        shop_name="トレカプラザ55",
+        # WebSearchで発見(2026-09-04)。ポケモンカード通販(販売)サイト。
+        # 実HTML構造は未検証(debug_fetch待ち)。
+        buy_url=None,
+        sell_url="https://torecaplaza55.com/",
+        shop_type="sell_only",
+        parser="torecaplaza55",
+    ),
+    ShopConfig(
+        shop_id="dorasuta_shop",
+        shop_name="ドラゴンスター 通販",
+        # WebSearchで発見(2026-09-04)。買取専用サイト(buy.dorasuta.jp)は
+        # 403 Forbiddenで除外済みだが、通販側は別ドメイン(dorasuta.jp)の
+        # ため再検証する。実HTML構造は未検証(debug_fetch待ち)。
+        buy_url=None,
+        sell_url="https://dorasuta.jp/",
+        shop_type="sell_only",
+        parser="dorasuta_shop",
+    ),
+    ShopConfig(
+        shop_id="fukufuku_collect",
+        shop_name="福福トレカコレクション",
+        # WebSearchで発見(2026-09-04)。既存の福福トレカ
+        # (pokemon.fukufukutoreka.com)とは別ドメインの通販サイト。実HTML
+        # 構造は未検証(debug_fetch待ち)。
+        buy_url=None,
+        sell_url="https://fukufukucollect.shop-pro.jp/",
+        shop_type="sell_only",
+        parser="fukufuku_collect",
+    ),
 ]
