@@ -417,8 +417,10 @@ SHOPS: List[ShopConfig] = [
         shop_id="fullcomp_shop",
         shop_name="フルコンプ ONLINE SHOP",
         # WebSearchで発見(2026-09-04)。既存のフルコンプ(買取: fullcomp.jp)
-        # とは別ドメインの通販(販売)サイト。実HTML構造は未検証
-        # (debug_fetch待ち)。
+        # とは別ドメインの通販(販売)サイト。debug_fetchで実HTML確認済み:
+        # Shopify製ストアで.product-card__content単位に構造化されており、
+        # 実データ40件抽出できることを確認済み(商品名はCSS Modules
+        # ハッシュクラスを避け、`<a aria-label>`から取得)。
         buy_url=None,
         sell_url="https://shopping.fullcomp.jp/collections/pokemon",
         shop_type="sell_only",
@@ -429,19 +431,25 @@ SHOPS: List[ShopConfig] = [
         shop_name="ホビーステーション シングル通販店",
         # WebSearchで発見(2026-09-04)。既存で除外したホビーステーション
         # (hbst.net、買取導線なしで除外)とは別ドメインの通販専用サイト。
-        # 実HTML構造は未検証(debug_fetch待ち)。
+        # debug_fetchで実HTML確認済み: トップページには「販売開始」の
+        # お知らせバナーが並ぶのみで価格情報は無かった。バナーのリンク先
+        # (/pk/product/list?...)が商品検索結果ページのため、クエリ無しの
+        # 商品一覧URLに変更して再検証する。
         buy_url=None,
-        sell_url="https://www.hobbystation-single.jp/",
+        sell_url="https://www.hobbystation-single.jp/pk/product/list",
         shop_type="sell_only",
         parser="hobbystation_single",
     ),
     ShopConfig(
         shop_id="torecaplaza55",
         shop_name="トレカプラザ55",
-        # WebSearchで発見(2026-09-04)。ポケモンカード通販(販売)サイト。
-        # 実HTML構造は未検証(debug_fetch待ち)。
+        # WebSearchで発見(2026-09-04)。debug_fetchで実HTML確認済み:
+        # トップページは全ジャンル混在(ONE PIECE・ロルカナ等含む)で
+        # ポケモンカードは1件のみだった。専用グループページ
+        # (?mode=grp&gid=3030904、「ポケモンカードゲーム シングルカード
+        # の取り扱いを開始」)を発見したため、そちらに変更して再検証する。
         buy_url=None,
-        sell_url="https://torecaplaza55.com/",
+        sell_url="https://torecaplaza55.com/?mode=grp&gid=3030904",
         shop_type="sell_only",
         parser="torecaplaza55",
     ),
@@ -449,10 +457,11 @@ SHOPS: List[ShopConfig] = [
         shop_id="dorasuta_shop",
         shop_name="ドラゴンスター 通販",
         # WebSearchで発見(2026-09-04)。買取専用サイト(buy.dorasuta.jp)は
-        # 403 Forbiddenで除外済みだが、通販側は別ドメイン(dorasuta.jp)の
-        # ため再検証する。実HTML構造は未検証(debug_fetch待ち)。
+        # 403 Forbiddenで除外済み。通販側(dorasuta.jp)も再検証したが
+        # 同じく403 Forbiddenで拒否された。bot対策による明確な拒否と
+        # 判断しヘッダー偽装等での回避は行わず除外(None化)。
         buy_url=None,
-        sell_url="https://dorasuta.jp/",
+        sell_url=None,
         shop_type="sell_only",
         parser="dorasuta_shop",
     ),
@@ -460,10 +469,13 @@ SHOPS: List[ShopConfig] = [
         shop_id="fukufuku_collect",
         shop_name="福福トレカコレクション",
         # WebSearchで発見(2026-09-04)。既存の福福トレカ
-        # (pokemon.fukufukutoreka.com)とは別ドメインの通販サイト。実HTML
-        # 構造は未検証(debug_fetch待ち)。
+        # (pokemon.fukufukutoreka.com)とは別ドメインの通販サイト。
+        # debug_fetchで実HTML確認済み: トップページは全ジャンル混在
+        # (遊戯王等含む)で.c-itemsも2件のみだった。ポケモンカード専用
+        # カテゴリページ(?mode=cate&cbid=2929264&csid=0)を発見したため、
+        # そちらに変更して再検証する。
         buy_url=None,
-        sell_url="https://fukufukucollect.shop-pro.jp/",
+        sell_url="https://fukufukucollect.shop-pro.jp/?mode=cate&cbid=2929264&csid=0&sort=p",
         shop_type="sell_only",
         parser="fukufuku_collect",
     ),
