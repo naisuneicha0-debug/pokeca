@@ -18,8 +18,11 @@ from playwright.sync_api import sync_playwright, Browser
 from .http_client import USER_AGENT
 from .rate_limiter import RateLimiter
 
-# ページ読み込み(networkidle)後、追加でJSの非同期描画を待つ猶予時間
-RENDER_WAIT_MS = 3000
+# ページ読み込み(domcontentloaded)後、追加でJSの非同期描画を待つ猶予時間。
+# "networkidle"はアナリティクス・WebSocket等が常時通信し続けるSPA
+# (スニーカーダンク等)ではいつまでもアイドルにならずタイムアウトするため、
+# domcontentloaded + 固定待機時間の組み合わせを使う。
+RENDER_WAIT_MS = 5000
 NAVIGATION_TIMEOUT_MS = 30000
 
 
@@ -38,7 +41,7 @@ def fetch_rendered_html(browser: Browser, url: str, rate_limiter: RateLimiter) -
     rate_limiter.wait()
     page = browser.new_page(user_agent=USER_AGENT)
     try:
-        page.goto(url, wait_until="networkidle", timeout=NAVIGATION_TIMEOUT_MS)
+        page.goto(url, wait_until="domcontentloaded", timeout=NAVIGATION_TIMEOUT_MS)
         page.wait_for_timeout(RENDER_WAIT_MS)
         return page.content()
     finally:
