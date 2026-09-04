@@ -402,10 +402,13 @@ SHOPS: List[ShopConfig] = [
         shop_id="snkrdunk",
         shop_name="スニーカーダンク",
         # ユーザーからの指摘で追加調査(2026-09-04)。フリマ型の真贋鑑定付き
-        # 二次流通プラットフォーム(スニーカー・トレカ等)。ポケモンカードの
-        # 検索結果ページ(出品ベースの相場)が候補。大手プラットフォームの
-        # ためbot対策(Cloudflare等)やJSレンダリング必須の可能性が高い。
-        # 実HTML構造は未検証(debug_fetch待ち)。
+        # 二次流通プラットフォーム(スニーカー・トレカ等)。debug_fetchで
+        # 実HTML確認済み: bot対策等の拒否は無く静的取得できた。CSS Modules
+        # のハッシュ付きクラス名(ビルドごとに変わりうる)は避け、商品リンク
+        # (`<a href="/apparels/...">`)のaria-label属性から直接カード名・
+        # 型番・価格を抽出する方式で実データ50件抽出できることを確認済み
+        # (1ページ目のみ。ページネーションで増やせる可能性はあるが今回は
+        # 未対応)。
         buy_url=None,
         sell_url="https://snkrdunk.com/search?keywords=%E3%83%9D%E3%82%B1%E3%83%A2%E3%83%B3%E3%82%AB%E3%83%BC%E3%83%89%E3%82%B2%E3%83%BC%E3%83%A0%28%E3%83%9D%E3%82%B1%E3%82%AB%29+%E3%83%88%E3%83%AC%E3%82%AB&searchCategoryIds=6&brandIds=pokemon&sort=popular",
         shop_type="sell_only",
