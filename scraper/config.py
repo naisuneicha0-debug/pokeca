@@ -506,21 +506,37 @@ SHOPS: List[ShopConfig] = [
         shop_name="フルアヘッド",
         # WebSearchで発見(2026-09-04)。ユーザーの要望(販売も50万円以上に
         # 絞って精査)を受け、PSA鑑定品等の高額カードを扱う通販サイトを
-        # 新規調査。PSA鑑定品専門コーナーが候補。実HTML構造は未検証
-        # (debug_fetch待ち)。買取専用サイト(fullahead-buy.com)とは別
-        # ドメインなので混同しないよう注意。
+        # 新規調査。買取専用サイト(fullahead-buy.com)とは別ドメインの
+        # PSA鑑定品専門コーナー。debug_fetchで実HTML確認済み:
+        # .itemName/.itemPriceが商品数分並ぶ構造(1商品を包む親要素が
+        # 浅く直接対応付けできないため出現順でzipして対応)。1ページ50件・
+        # 全10ページのページネーションがあり、1ページ目時点の最高額は
+        # 45.8万円と50万円のしきい値に迫る水準だったため、全10ページを
+        # 巡回する。
         buy_url=None,
-        sell_url="https://pokemon-card-fullahead.com/shopbrand/psacard/",
+        sell_url=None,
+        sell_urls=[
+            "https://pokemon-card-fullahead.com/shopbrand/psacard/"
+        ] + [
+            f"https://pokemon-card-fullahead.com/shopbrand/psacard/page{i}/recommend/"
+            for i in range(2, 11)
+        ],
         shop_type="sell_only",
         parser="fullahead",
     ),
     ShopConfig(
         shop_id="japan_toreca",
         shop_name="Japan-toreca",
-        # WebSearchで発見(2026-09-04)。PSA鑑定品専門コレクションページが
-        # 候補。実HTML構造は未検証(debug_fetch待ち)。
+        # WebSearchで発見(2026-09-04)。PSA鑑定品専門コレクションページ。
+        # debug_fetchで実HTML確認済み: Shopify製ストアで.innerer単位に
+        # 構造化されており、実データ39件・最高42万円を確認済み(2ページ
+        # 目もあるため両方回る)。
         buy_url=None,
-        sell_url="https://shop.japan-toreca.com/collections/psa%E9%91%91%E5%AE%9A%E5%93%81",
+        sell_url=None,
+        sell_urls=[
+            "https://shop.japan-toreca.com/collections/psa%E9%91%91%E5%AE%9A%E5%93%81",
+            "https://shop.japan-toreca.com/collections/psa%E9%91%91%E5%AE%9A%E5%93%81?page=2",
+        ],
         shop_type="sell_only",
         parser="japan_toreca",
     ),
