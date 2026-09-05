@@ -64,13 +64,10 @@ def run() -> None:
 
             summary.append(shop_result)
 
-    # 収集対象は50万円以上のみ(上限なし)。買取・売値のどちらかが
-    # しきい値を超えていれば残す。
-    high_value_records = [
-        r
-        for r in all_records
-        if (r["buy_price"] or 0) >= HIGH_VALUE_THRESHOLD or (r["sell_price"] or 0) >= HIGH_VALUE_THRESHOLD
-    ]
+    # 収集対象は20万円以上のみ(上限なし)。買取価格は無視し、売値
+    # (sell_price)がしきい値を超えているレコードのみ残す(ユーザー方針、
+    # 2026-09-05)。
+    high_value_records = [r for r in all_records if (r["sell_price"] or 0) >= HIGH_VALUE_THRESHOLD]
 
     write_shops()
     write_card_price(high_value_records)
@@ -96,7 +93,7 @@ def _print_summary(summary: list, all_records: List[Dict], high_value_records: L
         for sk in s["skipped"]:
             print(f"    - {sk}")
 
-    prices = [p for r in high_value_records for p in (r["buy_price"], r["sell_price"]) if p is not None]
+    prices = [r["sell_price"] for r in high_value_records if r["sell_price"] is not None]
 
     print(f"\nスキャン総件数: {total}")
     print(f"収集対象({HIGH_VALUE_THRESHOLD:,}円以上、上限なし)件数: {len(high_value_records)}")

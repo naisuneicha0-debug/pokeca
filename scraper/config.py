@@ -1,8 +1,10 @@
 from dataclasses import dataclass
 from typing import Optional, List
 
-# 収集対象は50万円以上のみ(上限なし)。買取・売値どちらかがこの金額以上なら残す。
-HIGH_VALUE_THRESHOLD = 500_000
+# 収集対象は20万円以上のみ(上限なし)。ユーザー方針により買取価格は無視し、
+# 売値(sell_price)がこの金額以上のレコードのみを残す(2026-09-05変更、
+# 旧しきい値は50万円で買取・売値どちらか一方の基準だった)。
+HIGH_VALUE_THRESHOLD = 200_000
 
 
 @dataclass(frozen=True)
