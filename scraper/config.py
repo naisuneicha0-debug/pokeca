@@ -542,17 +542,4 @@ SHOPS: List[ShopConfig] = [
         shop_type="sell_only",
         parser="japan_toreca",
     ),
-    ShopConfig(
-        shop_id="x_test",
-        shop_name="X(Twitter)検証用",
-        # ユーザーからの提案(2026-09-05)で、ショップのX(Twitter)公式
-        # アカウントの投稿(買取表更新の告知等)を取得できるか技術検証する
-        # ための一時的なエントリ。晴れる屋2秋葉原本店のXアカウントで試す。
-        # ログイン必須の壁が厳しく静的取得できない可能性が高いと予想。
-        # 結果次第で本採用または削除する。
-        buy_url="https://x.com/hareruya2pokeca",
-        sell_url=None,
-        shop_type="buy_only",
-        parser="x_test",
-    ),
 ]
