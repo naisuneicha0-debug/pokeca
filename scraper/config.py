@@ -87,8 +87,16 @@ SHOPS: List[ShopConfig] = [
         # 全シート"#REF!"エラーまたは「只今準備中です」で実データが入って
         # いなかった(2026-09-03、シート自体が壊れている/未整備と判断)。
         # 買取側はこれ以上の対応方法が無いため対象外とし、sell_urlのみ運用。
+        # 2026-09-06 WebSearchで「高価レアカード」専用カテゴリページ
+        # (product-group/85)を発見。同ドメイン・同ECテンプレートのため
+        # 既存パーサーで実データ抽出できるか要検証。トップページに加えて
+        # sell_urlsに追加する。
         buy_url=None,
-        sell_url="https://www.cardrush-pokemon.jp/",  # TODO要検証: トップページの一部のみ
+        sell_url=None,
+        sell_urls=[
+            "https://www.cardrush-pokemon.jp/",  # TODO要検証: トップページの一部のみ
+            "https://www.cardrush-pokemon.jp/product-group/85",  # 高価レアカード
+        ],
         shop_type="both",
         parser="cardrush",
     ),
@@ -394,9 +402,15 @@ SHOPS: List[ShopConfig] = [
         shop_name="CBトレコロ",
         # WebSearchで発見(2026-09-04)。debug_fetchで実HTML確認済み:
         # MakeShop系ECテンプレート(.js-enhanced-ecommerce-item)で実データ
-        # 25件抽出できることを確認済み。
+        # 25件抽出できることを確認済み。2026-09-06 WebSearchで「金額
+        # ランキング」ページ(e/ePCCBKINK)を追加発見。同じMakeShop系
+        # テンプレートで高額カードが集まっている可能性が高いため追加。
         buy_url=None,
-        sell_url="https://www.torecolo.jp/shop/c/c1074/",
+        sell_url=None,
+        sell_urls=[
+            "https://www.torecolo.jp/shop/c/c1074/",
+            "https://www.torecolo.jp/shop/e/ePCCBKINK/",
+        ],
         shop_type="sell_only",
         parser="cb_torecolo",
     ),
@@ -541,5 +555,25 @@ SHOPS: List[ShopConfig] = [
         ],
         shop_type="sell_only",
         parser="japan_toreca",
+    ),
+    ShopConfig(
+        shop_id="yellowsubmarine",
+        shop_name="イエローサブマリン",
+        # WebSearchで発見(2026-09-06)。ONLINE FLAG SHOPのポケモンカード
+        # カテゴリページ。実HTML構造は未検証(debug_fetch待ち)。
+        buy_url=None,
+        sell_url="https://shop.yellowsubmarine.co.jp/products/list?category_id=118",
+        shop_type="sell_only",
+        parser="yellowsubmarine",
+    ),
+    ShopConfig(
+        shop_id="cardkingdom",
+        shop_name="カードキングダム",
+        # WebSearchで発見(2026-09-06)。オンラインショップのポケモンカード
+        # カテゴリページ。実HTML構造は未検証(debug_fetch待ち)。
+        buy_url=None,
+        sell_url="https://cardkingdom.stores.jp/?category_id=5e819cf8e20b0432b08ae621",
+        shop_type="sell_only",
+        parser="cardkingdom",
     ),
 ]
