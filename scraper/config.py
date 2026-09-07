@@ -88,14 +88,18 @@ SHOPS: List[ShopConfig] = [
         # いなかった(2026-09-03、シート自体が壊れている/未整備と判断)。
         # 買取側はこれ以上の対応方法が無いため対象外とし、sell_urlのみ運用。
         # 2026-09-06 WebSearchで「高価レアカード」専用カテゴリページ
-        # (product-group/85)を発見。同ドメイン・同ECテンプレートのため
-        # 既存パーサーで実データ抽出できるか要検証。トップページに加えて
-        # sell_urlsに追加する。
+        # (product-group/85)を発見。debug_fetchで実HTML確認済み: 既存の
+        # ec_commonパーサーがそのまま使え、1ページ目だけで100件・うち
+        # 20万円以上47件(最高598万円)という大きな収穫だった。全14ページの
+        # ページネーションを持つため全ページ回るよう拡張。
         buy_url=None,
         sell_url=None,
         sell_urls=[
             "https://www.cardrush-pokemon.jp/",  # TODO要検証: トップページの一部のみ
-            "https://www.cardrush-pokemon.jp/product-group/85",  # 高価レアカード
+        ] + [
+            f"https://www.cardrush-pokemon.jp/product-group/85?page={i}" if i > 1
+            else "https://www.cardrush-pokemon.jp/product-group/85"
+            for i in range(1, 15)
         ],
         shop_type="both",
         parser="cardrush",
@@ -403,8 +407,10 @@ SHOPS: List[ShopConfig] = [
         # WebSearchで発見(2026-09-04)。debug_fetchで実HTML確認済み:
         # MakeShop系ECテンプレート(.js-enhanced-ecommerce-item)で実データ
         # 25件抽出できることを確認済み。2026-09-06 WebSearchで「金額
-        # ランキング」ページ(e/ePCCBKINK)を追加発見。同じMakeShop系
-        # テンプレートで高額カードが集まっている可能性が高いため追加。
+        # ランキング」ページ(e/ePCCBKINK)を追加発見。debug_fetchで実データ
+        # 98件抽出できることを確認したが、20万円以上は1件のみ(最高45万円)
+        # とそこまで高額カードは多くなかった。ページネーションは見つからず
+        # (ランキング上位98件のみの仕様と思われる)。
         buy_url=None,
         sell_url=None,
         sell_urls=[
@@ -560,7 +566,11 @@ SHOPS: List[ShopConfig] = [
         shop_id="yellowsubmarine",
         shop_name="イエローサブマリン",
         # WebSearchで発見(2026-09-06)。ONLINE FLAG SHOPのポケモンカード
-        # カテゴリページ。実HTML構造は未検証(debug_fetch待ち)。
+        # カテゴリページ。debug_fetchで実HTML確認済み: EC-CUBE系テンプレート
+        # (.ec-shelfGrid__item)で専用パーサーを実装し実データ抽出できたが、
+        # このカテゴリ自体の掲載件数がわずか2件(ダメカンケース等のサプライ
+        # 品のみ、いずれも品切れ)で、シングルカードの専用カテゴリは見つから
+        # なかった。実店舗中心で通販は限定的な運用と思われる。
         buy_url=None,
         sell_url="https://shop.yellowsubmarine.co.jp/products/list?category_id=118",
         shop_type="sell_only",
@@ -569,10 +579,11 @@ SHOPS: List[ShopConfig] = [
     ShopConfig(
         shop_id="cardkingdom",
         shop_name="カードキングダム",
-        # WebSearchで発見(2026-09-06)。オンラインショップのポケモンカード
-        # カテゴリページ。実HTML構造は未検証(debug_fetch待ち)。
+        # WebSearchで発見(2026-09-06)。debug_fetchで実アクセスした結果
+        # 403 Forbiddenで拒否された。他の除外ショップ同様、bot対策による
+        # 明確な拒否と判断しヘッダー偽装等での回避は行わず除外(None化)。
         buy_url=None,
-        sell_url="https://cardkingdom.stores.jp/?category_id=5e819cf8e20b0432b08ae621",
+        sell_url=None,
         shop_type="sell_only",
         parser="cardkingdom",
     ),
