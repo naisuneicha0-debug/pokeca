@@ -410,12 +410,15 @@ SHOPS: List[ShopConfig] = [
         # ランキング」ページ(e/ePCCBKINK)を追加発見。debug_fetchで実データ
         # 98件抽出できることを確認したが、20万円以上は1件のみ(最高45万円)
         # とそこまで高額カードは多くなかった。ページネーションは見つからず
-        # (ランキング上位98件のみの仕様と思われる)。
+        # (ランキング上位98件のみの仕様と思われる)。2026-09-07 既存店舗の
+        # 見直しで「週間売上ベスト100」(e/etopbest)を追加発見。売上ベース
+        # なので必ずしも高額とは限らないが要確認。
         buy_url=None,
         sell_url=None,
         sell_urls=[
             "https://www.torecolo.jp/shop/c/c1074/",
             "https://www.torecolo.jp/shop/e/ePCCBKINK/",
+            "https://www.torecolo.jp/shop/e/etopbest/",
         ],
         shop_type="sell_only",
         parser="cb_torecolo",
@@ -535,13 +538,21 @@ SHOPS: List[ShopConfig] = [
         # 巡回した結果、実データ500件・うち50万円以上13件(最高548万円)を
         # 確認済み(2026-09-04)。今回追加した通販サイトの中で最も高額
         # カードの収穫が多い。
+        # 2026-09-07 既存店舗の見直しで新たに発見:
+        # (1) PSA10カテゴリはナビゲーション表示が526件で、11ページ目
+        #     (page11)が抜けていたため追加。
+        # (2) PSA鑑定なしの「高額・レアカード」専用カテゴリ
+        #     (/shopbrand/valuable/)が別に存在。件数・ページ数未確認の
+        #     ため1ページ目のみ追加し、次回debug_fetchで確認する。
         buy_url=None,
         sell_url=None,
         sell_urls=[
             "https://pokemon-card-fullahead.com/shopbrand/psacard/"
         ] + [
             f"https://pokemon-card-fullahead.com/shopbrand/psacard/page{i}/recommend/"
-            for i in range(2, 11)
+            for i in range(2, 12)
+        ] + [
+            "https://pokemon-card-fullahead.com/shopbrand/valuable/",
         ],
         shop_type="sell_only",
         parser="fullahead",
