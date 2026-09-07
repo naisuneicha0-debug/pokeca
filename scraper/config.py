@@ -540,10 +540,12 @@ SHOPS: List[ShopConfig] = [
         # カードの収穫が多い。
         # 2026-09-07 既存店舗の見直しで新たに発見:
         # (1) PSA10カテゴリはナビゲーション表示が526件で、11ページ目
-        #     (page11)が抜けていたため追加。
+        #     (page11)が抜けていたため追加(11ページ目確認済み、40件・
+        #     20万円以上は0件)。
         # (2) PSA鑑定なしの「高額・レアカード」専用カテゴリ
-        #     (/shopbrand/valuable/)が別に存在。件数・ページ数未確認の
-        #     ため1ページ目のみ追加し、次回debug_fetchで確認する。
+        #     (/shopbrand/valuable/)が別に存在。全6ページ(1ページ50件、
+        #     計約280件)を確認し全ページ追加。1ページ目のみで20万円以上
+        #     4件(最高45.8万円)を確認済み、残り5ページは未走査。
         buy_url=None,
         sell_url=None,
         sell_urls=[
@@ -553,6 +555,9 @@ SHOPS: List[ShopConfig] = [
             for i in range(2, 12)
         ] + [
             "https://pokemon-card-fullahead.com/shopbrand/valuable/",
+        ] + [
+            f"https://pokemon-card-fullahead.com/shopbrand/valuable/page{i}/recommend/"
+            for i in range(2, 7)
         ],
         shop_type="sell_only",
         parser="fullahead",
