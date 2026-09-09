@@ -87,3 +87,26 @@ GitHub Actions (`scrape.yml`) は毎日1回自動実行し、`data/*.json` に�
 価格のいずれかがこの金額**以上**(上限なし)のレコードのみを
 `data/card_price.json` に出力する。しきい値未満のレコードは収集はする
 ものの、最終出力からは除外される(`runner.py` でフィルタ)。
+
+## 価格変動のDiscord通知
+
+`scraper/notifier.py` が、実行の都度「前回コミット時点の
+`data/card_price.json`」と「今回の収集結果」を同一カード(店舗名+
+カード名+set_code+rarityで同定)ごとに突き合わせ、以下のいずれかを
+Discord Webhookに通知する。
+
+- 価格変動: 差額が `PRICE_CHANGE_ABS_THRESHOLD`(既定5万円)以上、
+  または変化率が `PRICE_CHANGE_PCT_THRESHOLD`(既定10%)以上動いたもの
+- 新規検出: 前回は存在せず今回新たに50万円しきい値を満たしたカード
+
+しきい値は `scraper/config.py` で調整する。
+
+### 設定方法
+
+1. Discordの通知したいチャンネルで「連携サービス」→「Webhookを作成」で
+   Webhook URLを発行する
+2. リポジトリの Settings → Secrets and variables → Actions で
+   `DISCORD_WEBHOOK_URL` という名前でそのURLをSecretとして登録する
+   (`scrape.yml` が実行時にこのSecretを環境変数として渡す)
+
+Secret未設定の場合は通知はスキップされる(収集自体は通常通り動く)。

@@ -4,6 +4,12 @@ from typing import Optional, List
 # 収集対象は50万円以上のみ(上限なし)。買取・売値どちらかがこの金額以上なら残す。
 HIGH_VALUE_THRESHOLD = 500_000
 
+# 価格変動通知(Discord)のしきい値。前回スナップショットとの差分がどちらか
+# 一方でも満たせば通知対象とする(細かい誤差レベルの変動でスパムに
+# ならないようにするためのフィルタ)。
+PRICE_CHANGE_ABS_THRESHOLD = 50_000  # 差額がこの円数以上
+PRICE_CHANGE_PCT_THRESHOLD = 0.10  # 変化率がこの割合以上(10%)
+
 
 @dataclass(frozen=True)
 class ShopConfig:

@@ -8,7 +8,8 @@ from .browser_client import browser_session
 from .fetcher import Fetcher
 from .parsers import get_parser
 from .rate_limiter import RateLimiter
-from .output import write_shops, write_card_price
+from .output import DATA_DIR, write_shops, write_card_price
+from .notifier import load_previous_records, notify_price_changes
 
 
 def run() -> None:
@@ -72,10 +73,13 @@ def run() -> None:
         if (r["buy_price"] or 0) >= HIGH_VALUE_THRESHOLD or (r["sell_price"] or 0) >= HIGH_VALUE_THRESHOLD
     ]
 
+    previous_records = load_previous_records(DATA_DIR / "card_price.json")
+
     write_shops()
     write_card_price(high_value_records)
 
     _print_summary(summary, all_records, high_value_records)
+    notify_price_changes(previous_records, high_value_records)
 
 
 def _print_summary(summary: list, all_records: List[Dict], high_value_records: List[Dict]) -> None:

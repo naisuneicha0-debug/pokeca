@@ -31,6 +31,8 @@ jobs:
         run: playwright install --with-deps chromium
 
       - name: Run scraper
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
         run: python -m scraper.runner
 
       - name: Commit updated data
