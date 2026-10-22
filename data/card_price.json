@@ -1,12 +1,57 @@
 [
   {
+    "card_name": "★ポケカ50万円福袋★{￥500,000}",
+    "set_code": null,
+    "rarity": "福袋",
+    "buy_price": null,
+    "sell_price": 500000,
+    "source_site": "カードラッシュ",
+    "fetched_at": "2026-10-22T21:08:41.806317+00:00"
+  },
+  {
+    "card_name": "ミュウ(30th){R/RGB}",
+    "set_code": null,
+    "rarity": null,
+    "buy_price": null,
+    "sell_price": 698000,
+    "source_site": "カードラッシュ",
+    "fetched_at": "2026-10-22T21:08:41.806317+00:00"
+  },
+  {
+    "card_name": "ミュウ(30th){G/RGB}",
+    "set_code": null,
+    "rarity": null,
+    "buy_price": null,
+    "sell_price": 528000,
+    "source_site": "カードラッシュ",
+    "fetched_at": "2026-10-22T21:08:41.806317+00:00"
+  },
+  {
+    "card_name": "ミュウ(30th){B/RGB}",
+    "set_code": null,
+    "rarity": null,
+    "buy_price": null,
+    "sell_price": 528000,
+    "source_site": "カードラッシュ",
+    "fetched_at": "2026-10-22T21:08:41.806317+00:00"
+  },
+  {
+    "card_name": "★ポケカ50万円福袋★{￥500,000}",
+    "set_code": null,
+    "rarity": "福袋",
+    "buy_price": null,
+    "sell_price": 500000,
+    "source_site": "カードラッシュ",
+    "fetched_at": "2026-10-22T21:08:41.806317+00:00"
+  },
+  {
     "card_name": "リザードンVMAX＋リザードンV(HR仕様/SR仕様/当選通知書付き)+104/S-P}",
     "set_code": "103/S-P",
     "rarity": "P",
     "buy_price": null,
     "sell_price": 1980000,
     "source_site": "カードラッシュ",
-    "fetched_at": "2026-10-21T21:10:29.306040+00:00"
+    "fetched_at": "2026-10-22T21:08:41.806317+00:00"
   },
   {
     "card_name": "〔PSA10鑑定済〕わるいリザードン LV.38{旧裏}",
@@ -15,7 +60,7 @@
     "buy_price": null,
     "sell_price": 748000,
     "source_site": "カードラッシュ",
-    "fetched_at": "2026-10-21T21:10:29.306040+00:00"
+    "fetched_at": "2026-10-22T21:08:41.806317+00:00"
   },
   {
     "card_name": "〔状態B〕ゲンガー LV.40(通信進化キャンペーン){旧裏}",
@@ -24,7 +69,7 @@
     "buy_price": null,
     "sell_price": 1380000,
     "source_site": "カードラッシュ",
-    "fetched_at": "2026-10-21T21:10:29.306040+00:00"
+    "fetched_at": "2026-10-22T21:08:41.806317+00:00"
   },
   {
     "card_name": "〔状態A-〕ポケパーク プレミアムファイル フォレストシート{-}",
@@ -33,16 +78,16 @@
     "buy_price": null,
     "sell_price": 2080000,
     "source_site": "カードラッシュ",
-    "fetched_at": "2026-10-21T21:10:29.306040+00:00"
+    "fetched_at": "2026-10-22T21:08:41.806317+00:00"
   },
   {
-    "card_name": "〔状態A-〕ポケモンカードゲーム ピカチュウ ワールド(PW){-}",
+    "card_name": "〔状態A-〕ピカチュウ ワールド(PW){-}",
     "set_code": null,
     "rarity": "未開封パック",
     "buy_price": null,
     "sell_price": 748000,
     "source_site": "カードラッシュ",
-    "fetched_at": "2026-10-21T21:10:29.306040+00:00"
+    "fetched_at": "2026-10-22T21:08:41.806317+00:00"
   },
   {
     "card_name": "〔状態A-〕ルイージピカチュウ(未開封)",
@@ -51,7 +96,7 @@
     "buy_price": null,
     "sell_price": 2680000,
     "source_site": "カードラッシュ",
-    "fetched_at": "2026-10-21T21:10:29.306040+00:00"
+    "fetched_at": "2026-10-22T21:08:41.806317+00:00"
   },
   {
     "card_name": "〔状態A-〕ポンチョを着たピカチュウ",
@@ -60,7 +105,7 @@
     "buy_price": null,
     "sell_price": 798000,
     "source_site": "カードラッシュ",
-    "fetched_at": "2026-10-21T21:10:29.306040+00:00"
+    "fetched_at": "2026-10-22T21:08:41.806317+00:00"
   },
   {
     "card_name": "〔状態A-〕ピカチュウ",
@@ -69,7 +114,7 @@
     "buy_price": null,
     "sell_price": 648000,
     "source_site": "カードラッシュ",
-    "fetched_at": "2026-10-21T21:10:29.306040+00:00"
+    "fetched_at": "2026-10-22T21:08:41.806317+00:00"
   },
   {
     "card_name": "〔状態A-〕リーリエ",
@@ -78,7 +123,7 @@
     "buy_price": null,
     "sell_price": 598000,
     "source_site": "カードラッシュ",
-    "fetched_at": "2026-10-21T21:10:29.306040+00:00"
+    "fetched_at": "2026-10-22T21:08:41.806317+00:00"
   },
   {
     "card_name": "〔PSA10鑑定済〕マリオピカチュウ",
@@ -87,7 +132,7 @@
     "buy_price": null,
     "sell_price": 5780000,
     "source_site": "カードラッシュ",
-    "fetched_at": "2026-10-21T21:10:29.306040+00:00"
+    "fetched_at": "2026-10-22T21:08:41.806317+00:00"
   },
   {
     "card_name": "〔※状態難/PSA10鑑定済〕ギャラドスごっこピカチュウ",
@@ -96,7 +141,7 @@
     "buy_price": null,
     "sell_price": 2280000,
     "source_site": "カードラッシュ",
-    "fetched_at": "2026-10-21T21:10:29.306040+00:00"
+    "fetched_at": "2026-10-22T21:08:41.806317+00:00"
   },
   {
     "card_name": "〔PSA9鑑定済〕ミミッキュ(ムンク)",
@@ -105,7 +150,7 @@
     "buy_price": null,
     "sell_price": 1580000,
     "source_site": "カードラッシュ",
-    "fetched_at": "2026-10-21T21:10:29.306040+00:00"
+    "fetched_at": "2026-10-22T21:08:41.806317+00:00"
   },
   {
     "card_name": "〔PSA7鑑定済〕ピカチュウ LV.16(光沢あり/Ken Sugimori){旧裏}",
@@ -114,7 +159,7 @@
     "buy_price": null,
     "sell_price": 2980000,
     "source_site": "カードラッシュ",
-    "fetched_at": "2026-10-21T21:10:29.306040+00:00"
+    "fetched_at": "2026-10-22T21:08:41.806317+00:00"
   },
   {
     "card_name": "〔PSA10鑑定済〕ピカチュウ",
@@ -123,7 +168,7 @@
     "buy_price": null,
     "sell_price": 948000,
     "source_site": "カードラッシュ",
-    "fetched_at": "2026-10-21T21:10:29.306040+00:00"
+    "fetched_at": "2026-10-22T21:08:41.806317+00:00"
   },
   {
     "card_name": "〔PSA10鑑定済〕レックウザδ-デルタ種",
@@ -132,7 +177,7 @@
     "buy_price": null,
     "sell_price": 1180000,
     "source_site": "カードラッシュ",
-    "fetched_at": "2026-10-21T21:10:29.306040+00:00"
+    "fetched_at": "2026-10-22T21:08:41.806317+00:00"
   },
   {
     "card_name": "〔PSA10鑑定済〕レックウザδ-デルタ種",
@@ -141,7 +186,7 @@
     "buy_price": null,
     "sell_price": 698000,
     "source_site": "カードラッシュ",
-    "fetched_at": "2026-10-21T21:10:29.306040+00:00"
+    "fetched_at": "2026-10-22T21:08:41.806317+00:00"
   },
   {
     "card_name": "〔※状態難/PSA10鑑定済〕ミュウ(20thアニバーサリー){XY-P}",
@@ -150,7 +195,7 @@
     "buy_price": null,
     "sell_price": 1580000,
     "source_site": "カードラッシュ",
-    "fetched_at": "2026-10-21T21:10:29.306040+00:00"
+    "fetched_at": "2026-10-22T21:08:41.806317+00:00"
   },
   {
     "card_name": "〔※状態難/PSA10鑑定済〕リザードンVMAX(HR仕様)",
@@ -159,7 +204,7 @@
     "buy_price": null,
     "sell_price": 1840000,
     "source_site": "カードラッシュ",
-    "fetched_at": "2026-10-21T21:10:29.306040+00:00"
+    "fetched_at": "2026-10-22T21:08:41.806317+00:00"
   },
   {
     "card_name": "〔※状態難/PSA10鑑定済〕ピカチュウ(日本語/緑背景){PW}",
@@ -168,16 +213,457 @@
     "buy_price": null,
     "sell_price": 1080000,
     "source_site": "カードラッシュ",
-    "fetched_at": "2026-10-21T21:10:29.306040+00:00"
+    "fetched_at": "2026-10-22T21:08:41.806317+00:00"
   },
   {
-    "card_name": "〔※状態難/PSA10鑑定済〕オーヤマのピカチュウ{-}",
-    "set_code": null,
-    "rarity": "P",
-    "buy_price": null,
-    "sell_price": 1080000,
-    "source_site": "カードラッシュ",
-    "fetched_at": "2026-10-21T21:10:29.306040+00:00"
+    "card_name": "_のピカチュウ:キラ",
+    "set_code": "プロモーションカード「PMCG-P」",
+    "rarity": "PROMO",
+    "buy_price": 350000,
+    "sell_price": 500000,
+    "source_site": "晴れる屋2",
+    "fetched_at": "2026-10-22T21:08:49.467931+00:00"
+  },
+  {
+    "card_name": "アチャモ☆:再販",
+    "set_code": "拡張パック「ロケット団の逆襲」-020/084",
+    "rarity": "◇",
+    "buy_price": 1000000,
+    "sell_price": 1300000,
+    "source_site": "晴れる屋2",
+    "fetched_at": "2026-10-22T21:08:49.467931+00:00"
+  },
+  {
+    "card_name": "アルセウス:なみのり",
+    "set_code": "プロモーションカード「DPt-P」",
+    "rarity": "PROMO",
+    "buy_price": 500000,
+    "sell_price": 1000000,
+    "source_site": "晴れる屋2",
+    "fetched_at": "2026-10-22T21:08:49.467931+00:00"
+  },
+  {
+    "card_name": "アルセウス:やきそば",
+    "set_code": "プロモーションカード「DPt-P」",
+    "rarity": "PROMO",
+    "buy_price": 500000,
+    "sell_price": 1000000,
+    "source_site": "晴れる屋2",
+    "fetched_at": "2026-10-22T21:08:49.467931+00:00"
+  },
+  {
+    "card_name": "アルセウス:伝説集合",
+    "set_code": "プロモーションカード「DPt-P」",
+    "rarity": "PROMO",
+    "buy_price": 500000,
+    "sell_price": 1000000,
+    "source_site": "晴れる屋2",
+    "fetched_at": "2026-10-22T21:08:49.467931+00:00"
+  },
+  {
+    "card_name": "アルセウス:全種",
+    "set_code": "プロモーションカード「DPt-P」",
+    "rarity": "PROMO",
+    "buy_price": 500000,
+    "sell_price": 1000000,
+    "source_site": "晴れる屋2",
+    "fetched_at": "2026-10-22T21:08:49.467931+00:00"
+  },
+  {
+    "card_name": "アルセウス:水炎",
+    "set_code": "プロモーションカード「DPt-P」",
+    "rarity": "PROMO",
+    "buy_price": 500000,
+    "sell_price": 1000000,
+    "source_site": "晴れる屋2",
+    "fetched_at": "2026-10-22T21:08:49.467931+00:00"
+  },
+  {
+    "card_name": "アルセウス:牡丹",
+    "set_code": "プロモーションカード「DPt-P」",
+    "rarity": "PROMO",
+    "buy_price": 500000,
+    "sell_price": 1000000,
+    "source_site": "晴れる屋2",
+    "fetched_at": "2026-10-22T21:08:49.467931+00:00"
+  },
+  {
+    "card_name": "アルセウス:神殿",
+    "set_code": "プロモーションカード「DPt-P」",
+    "rarity": "PROMO",
+    "buy_price": 500000,
+    "sell_price": 1000000,
+    "source_site": "晴れる屋2",
+    "fetched_at": "2026-10-22T21:08:49.467931+00:00"
+  },
+  {
+    "card_name": "エンテイ☆:再販",
+    "set_code": "拡張パック「金の空、銀の海」-019/106",
+    "rarity": "◇",
+    "buy_price": 400000,
+    "sell_price": 650000,
+    "source_site": "晴れる屋2",
+    "fetched_at": "2026-10-22T21:08:49.467931+00:00"
+  },
+  {
+    "card_name": "オーヤマのピカチュウ",
+    "set_code": "拡張シート",
+    "rarity": "D",
+    "buy_price": 300000,
+    "sell_price": 500000,
+    "source_site": "晴れる屋2",
+    "fetched_at": "2026-10-22T21:08:49.467931+00:00"
+  },
+  {
+    "card_name": "キモリ☆:再販",
+    "set_code": "拡張パック「ロケット団の逆襲」-011/084",
+    "rarity": "◇",
+    "buy_price": 800000,
+    "sell_price": 1100000,
+    "source_site": "晴れる屋2",
+    "fetched_at": "2026-10-22T21:08:49.467931+00:00"
+  },
+  {
+    "card_name": "ギザみみピチューM[ムービー]",
+    "set_code": "プロモーションカード「DPt-P」-042/DPt-P",
+    "rarity": "PROMO",
+    "buy_price": 250000,
+    "sell_price": 850000,
+    "source_site": "晴れる屋2",
+    "fetched_at": "2026-10-22T21:08:49.467931+00:00"
+  },
+  {
+    "card_name": "ギザみみピチューM[ムービー]:HarukaUekura",
+    "set_code": "プロモーションカード「DPt-P」",
+    "rarity": "PROMO",
+    "buy_price": 500000,
+    "sell_price": 1000000,
+    "source_site": "晴れる屋2",
+    "fetched_at": "2026-10-22T21:08:49.467931+00:00"
+  },
+  {
+    "card_name": "ギザみみピチューM[ムービー]:KeitaMizuno",
+    "set_code": "プロモーションカード「DPt-P」",
+    "rarity": "PROMO",
+    "buy_price": 500000,
+    "sell_price": 1000000,
+    "source_site": "晴れる屋2",
+    "fetched_at": "2026-10-22T21:08:49.467931+00:00"
+  },
+  {
+    "card_name": "ギザみみピチューM[ムービー]:MahiroShinozaki",
+    "set_code": "プロモーションカード「DPt-P」",
+    "rarity": "PROMO",
+    "buy_price": 500000,
+    "sell_price": 1000000,
+    "source_site": "晴れる屋2",
+    "fetched_at": "2026-10-22T21:08:49.467931+00:00"
+  },
+  {
+    "card_name": "ギザみみピチューM[ムービー]:ShizukaKusakabe",
+    "set_code": "プロモーションカード「DPt-P」",
+    "rarity": "PROMO",
+    "buy_price": 500000,
+    "sell_price": 1000000,
+    "source_site": "晴れる屋2",
+    "fetched_at": "2026-10-22T21:08:49.467931+00:00"
+  },
+  {
+    "card_name": "ギザみみピチューM[ムービー]:ShunsukeTakemori",
+    "set_code": "プロモーションカード「DPt-P」",
+    "rarity": "PROMO",
+    "buy_price": 500000,
+    "sell_price": 1000000,
+    "source_site": "晴れる屋2",
+    "fetched_at": "2026-10-22T21:08:49.467931+00:00"
+  },
+  {
+    "card_name": "ギザみみピチューM[ムービー]:TaiseiFujita",
+    "set_code": "プロモーションカード「DPt-P」",
+    "rarity": "PROMO",
+    "buy_price": 500000,
+    "sell_price": 1000000,
+    "source_site": "晴れる屋2",
+    "fetched_at": "2026-10-22T21:08:49.467931+00:00"
+  },
+  {
+    "card_name": "サンダース☆",
+    "set_code": "プロモーションカード「PCG-P」-023/PLAY",
+    "rarity": "PROMO",
+    "buy_price": 500000,
+    "sell_price": 650000,
+    "source_site": "晴れる屋2",
+    "fetched_at": "2026-10-22T21:08:49.467931+00:00"
+  },
+  {
+    "card_name": "シャワーズ☆",
+    "set_code": "プロモーションカード「PCG-P」-022/PLAY",
+    "rarity": "PROMO",
+    "buy_price": 500000,
+    "sell_price": 650000,
+    "source_site": "晴れる屋2",
+    "fetched_at": "2026-10-22T21:08:49.467931+00:00"
+  },
+  {
+    "card_name": "スイクン☆:再販",
+    "set_code": "拡張パック「金の空、銀の海」-032/106",
+    "rarity": "◇",
+    "buy_price": 400000,
+    "sell_price": 600000,
+    "source_site": "晴れる屋2",
+    "fetched_at": "2026-10-22T21:08:49.467931+00:00"
+  },
+  {
+    "card_name": "スカル団ごっこピカチュウ",
+    "set_code": "プロモーションカード「SM-P」-013/SM-P",
+    "rarity": "PROMO",
+    "buy_price": 750000,
+    "sell_price": 1400000,
+    "source_site": "晴れる屋2",
+    "fetched_at": "2026-10-22T21:08:49.467931+00:00"
+  },
+  {
+    "card_name": "ピカチュウ",
+    "set_code": "プロモーションカード「S-P」-227/S-P",
+    "rarity": "PROMO",
+    "buy_price": 400000,
+    "sell_price": 550000,
+    "source_site": "晴れる屋2",
+    "fetched_at": "2026-10-22T21:08:49.467931+00:00"
+  },
+  {
+    "card_name": "ピカチュウ:トレーナーズ",
+    "set_code": "プロモーションカード「PMCG-P」",
+    "rarity": "PROMO",
+    "buy_price": 250000,
+    "sell_price": 500000,
+    "source_site": "晴れる屋2",
+    "fetched_at": "2026-10-22T21:08:49.467931+00:00"
+  },
+  {
+    "card_name": "ピカチュウEX",
+    "set_code": "コンセプトパック「ポケットモンスターカードゲーム 拡張パック 20th Anniversary」-094/087",
+    "rarity": "SR",
+    "buy_price": 160000,
+    "sell_price": 600000,
+    "source_site": "晴れる屋2",
+    "fetched_at": "2026-10-22T21:08:49.467931+00:00"
+  },
+  {
+    "card_name": "ブラッキー:キラ再販",
+    "set_code": "拡張パック第2弾「地図にない町」-068/092",
+    "rarity": "★H",
+    "buy_price": 250000,
+    "sell_price": 700000,
+    "source_site": "晴れる屋2",
+    "fetched_at": "2026-10-22T21:08:49.467931+00:00"
+  },
+  {
+    "card_name": "ブラッキーVMAX:SA",
+    "set_code": "強化拡張パック「イーブイヒーローズ」-095/069",
+    "rarity": "HR",
+    "buy_price": 420000,
+    "sell_price": 550000,
+    "source_site": "晴れる屋2",
+    "fetched_at": "2026-10-22T21:08:49.467931+00:00"
+  },
+  {
+    "card_name": "ポリゴン:ファンクラブ",
+    "set_code": "プロモーションカード「neo-P」",
+    "rarity": "PROMO",
+    "buy_price": 300000,
+    "sell_price": 500000,
+    "source_site": "晴れる屋2",
+    "fetched_at": "2026-10-22T21:08:49.467931+00:00"
+  },
+  {
+    "card_name": "ポンチョを着たピカチュウ",
+    "set_code": "プロモーションカード「XY-P」-274/XY-P",
+    "rarity": "PROMO",
+    "buy_price": 450000,
+    "sell_price": 600000,
+    "source_site": "晴れる屋2",
+    "fetched_at": "2026-10-22T21:08:49.467931+00:00"
+  },
+  {
+    "card_name": "ポンチョを着たピカチュウ",
+    "set_code": "プロモーションカード「XY-P」-275/XY-P",
+    "rarity": "PROMO",
+    "buy_price": 150000,
+    "sell_price": 550000,
+    "source_site": "晴れる屋2",
+    "fetched_at": "2026-10-22T21:08:49.467931+00:00"
+  },
+  {
+    "card_name": "ミュウ:緑",
+    "set_code": "拡張パック「30th CELEBRATION」-G/RGB",
+    "rarity": "RGB",
+    "buy_price": 380000,
+    "sell_price": 500000,
+    "source_site": "晴れる屋2",
+    "fetched_at": "2026-10-22T21:08:49.467931+00:00"
+  },
+  {
+    "card_name": "ミュウ:赤",
+    "set_code": "拡張パック「30th CELEBRATION」-R/RGB",
+    "rarity": "RGB",
+    "buy_price": 500000,
+    "sell_price": 650000,
+    "source_site": "晴れる屋2",
+    "fetched_at": "2026-10-22T21:08:49.467931+00:00"
+  },
+  {
+    "card_name": "ミュウ:青",
+    "set_code": "拡張パック「30th CELEBRATION」-B/RGB",
+    "rarity": "RGB",
+    "buy_price": 380000,
+    "sell_price": 500000,
+    "source_site": "晴れる屋2",
+    "fetched_at": "2026-10-22T21:08:49.467931+00:00"
+  },
+  {
+    "card_name": "ミュウEX",
+    "set_code": "コンセプトパック「シャイニーコレクション」-024/020",
+    "rarity": "CP",
+    "buy_price": 180000,
+    "sell_price": 500000,
+    "source_site": "晴れる屋2",
+    "fetched_at": "2026-10-22T21:08:49.467931+00:00"
+  },
+  {
+    "card_name": "ミュウEX",
+    "set_code": "拡張パック「リューズブラスト」-051/050",
+    "rarity": "SR",
+    "buy_price": 180000,
+    "sell_price": 500000,
+    "source_site": "晴れる屋2",
+    "fetched_at": "2026-10-22T21:08:49.467931+00:00"
+  },
+  {
+    "card_name": "ミュウex",
+    "set_code": "プロモーションカード「ADV-P」-007/PLAY",
+    "rarity": "PROMO",
+    "buy_price": 900000,
+    "sell_price": 1300000,
+    "source_site": "晴れる屋2",
+    "fetched_at": "2026-10-22T21:08:49.467931+00:00"
+  },
+  {
+    "card_name": "ミュウツーEX",
+    "set_code": "プロモーションカード「XY-P」-XY-P",
+    "rarity": "PROMO",
+    "buy_price": 500000,
+    "sell_price": 900000,
+    "source_site": "晴れる屋2",
+    "fetched_at": "2026-10-22T21:08:49.467931+00:00"
+  },
+  {
+    "card_name": "ラティアス&ラティオスGX:SA",
+    "set_code": "拡張パック「タッグボルト」-105/095",
+    "rarity": "SR",
+    "buy_price": 360000,
+    "sell_price": 500000,
+    "source_site": "晴れる屋2",
+    "fetched_at": "2026-10-22T21:08:49.467931+00:00"
+  },
+  {
+    "card_name": "ラティアス☆:1ED",
+    "set_code": "拡張パック「蒼空の激突」-065/082",
+    "rarity": "◇",
+    "buy_price": 1000000,
+    "sell_price": 1300000,
+    "source_site": "晴れる屋2",
+    "fetched_at": "2026-10-22T21:08:49.467931+00:00"
+  },
+  {
+    "card_name": "ラティアス☆:再販",
+    "set_code": "拡張パック「蒼空の激突」-065/082",
+    "rarity": "◇",
+    "buy_price": 750000,
+    "sell_price": 1000000,
+    "source_site": "晴れる屋2",
+    "fetched_at": "2026-10-22T21:08:49.467931+00:00"
+  },
+  {
+    "card_name": "ラティオス☆:1ED",
+    "set_code": "拡張パック「蒼空の激突」-066/082",
+    "rarity": "◇",
+    "buy_price": 900000,
+    "sell_price": 1200000,
+    "source_site": "晴れる屋2",
+    "fetched_at": "2026-10-22T21:08:49.467931+00:00"
+  },
+  {
+    "card_name": "ラティオス☆:再販",
+    "set_code": "拡張パック「蒼空の激突」-066/082",
+    "rarity": "◇",
+    "buy_price": 700000,
+    "sell_price": 1000000,
+    "source_site": "晴れる屋2",
+    "fetched_at": "2026-10-22T21:08:49.467931+00:00"
+  },
+  {
+    "card_name": "リザードン",
+    "set_code": "プロモーションカード「e-P」-014/P",
+    "rarity": "PROMO",
+    "buy_price": 350000,
+    "sell_price": 500000,
+    "source_site": "晴れる屋2",
+    "fetched_at": "2026-10-22T21:08:49.467931+00:00"
+  },
+  {
+    "card_name": "リザードン",
+    "set_code": "拡張パック第1弾（再販）",
+    "rarity": "R",
+    "buy_price": 300000,
+    "sell_price": 650000,
+    "source_site": "晴れる屋2",
+    "fetched_at": "2026-10-22T21:08:49.467931+00:00"
+  },
+  {
+    "card_name": "リザードンEX",
+    "set_code": "プロモーションカード「XY-P」-276/XY-P",
+    "rarity": "PROMO",
+    "buy_price": 220000,
+    "sell_price": 800000,
+    "source_site": "晴れる屋2",
+    "fetched_at": "2026-10-22T21:08:49.467931+00:00"
+  },
+  {
+    "card_name": "ルイージピカチュウ",
+    "set_code": "プロモーションカード「XY-P」-295/XY-P",
+    "rarity": "PROMO",
+    "buy_price": 520000,
+    "sell_price": 750000,
+    "source_site": "晴れる屋2",
+    "fetched_at": "2026-10-22T21:08:49.467931+00:00"
+  },
+  {
+    "card_name": "レックウザVMAX:SA",
+    "set_code": "拡張パック「蒼空ストリーム」-083/067",
+    "rarity": "HR",
+    "buy_price": 680000,
+    "sell_price": 900000,
+    "source_site": "晴れる屋2",
+    "fetched_at": "2026-10-22T21:08:49.467931+00:00"
+  },
+  {
+    "card_name": "レックウザex",
+    "set_code": "プロモーションカード「PCG-P」-029/PLAY",
+    "rarity": "PROMO",
+    "buy_price": 200000,
+    "sell_price": 500000,
+    "source_site": "晴れる屋2",
+    "fetched_at": "2026-10-22T21:08:49.467931+00:00"
+  },
+  {
+    "card_name": "勝利のリング",
+    "set_code": "プロモーションカード「ADV-P」",
+    "rarity": "PROMO",
+    "buy_price": 280000,
+    "sell_price": 600000,
+    "source_site": "晴れる屋2",
+    "fetched_at": "2026-10-22T21:08:49.467931+00:00"
   },
   {
     "card_name": "未開封ブースターVMAX",
@@ -186,16 +672,16 @@
     "buy_price": 1600000,
     "sell_price": null,
     "source_site": "フルコンプ秋葉原店",
-    "fetched_at": "2026-10-21T21:10:40.955296+00:00"
+    "fetched_at": "2026-10-22T21:08:54.808810+00:00"
   },
   {
     "card_name": "リザードンEX",
     "set_code": "PROMO-276/XY-P",
     "rarity": "P",
-    "buy_price": 650000,
+    "buy_price": 500000,
     "sell_price": null,
     "source_site": "フルコンプ秋葉原店",
-    "fetched_at": "2026-10-21T21:10:40.955296+00:00"
+    "fetched_at": "2026-10-22T21:08:54.808810+00:00"
   },
   {
     "card_name": "リザードンVMAX",
@@ -204,16 +690,16 @@
     "buy_price": 1000000,
     "sell_price": null,
     "source_site": "フルコンプ秋葉原店",
-    "fetched_at": "2026-10-21T21:10:40.955296+00:00"
+    "fetched_at": "2026-10-22T21:08:54.808810+00:00"
   },
   {
     "card_name": "未開封リザードンEX",
     "set_code": "PROMO-276/XY-P",
     "rarity": "P",
-    "buy_price": 800000,
+    "buy_price": 700000,
     "sell_price": null,
     "source_site": "フルコンプ秋葉原店",
-    "fetched_at": "2026-10-21T21:10:40.955296+00:00"
+    "fetched_at": "2026-10-22T21:08:54.808810+00:00"
   },
   {
     "card_name": "未開封リザードンV",
@@ -222,7 +708,7 @@
     "buy_price": 1300000,
     "sell_price": null,
     "source_site": "フルコンプ秋葉原店",
-    "fetched_at": "2026-10-21T21:10:40.955296+00:00"
+    "fetched_at": "2026-10-22T21:08:54.808810+00:00"
   },
   {
     "card_name": "リザードン",
@@ -231,7 +717,7 @@
     "buy_price": 500000,
     "sell_price": null,
     "source_site": "フルコンプ秋葉原店",
-    "fetched_at": "2026-10-21T21:10:40.955296+00:00"
+    "fetched_at": "2026-10-22T21:08:54.808810+00:00"
   },
   {
     "card_name": "シャワーズVMAX",
@@ -240,7 +726,7 @@
     "buy_price": 600000,
     "sell_price": null,
     "source_site": "フルコンプ秋葉原店",
-    "fetched_at": "2026-10-21T21:10:40.955296+00:00"
+    "fetched_at": "2026-10-22T21:08:54.808810+00:00"
   },
   {
     "card_name": "ギャラドスごっこピカチュウ",
@@ -249,7 +735,7 @@
     "buy_price": 1000000,
     "sell_price": null,
     "source_site": "フルコンプ秋葉原店",
-    "fetched_at": "2026-10-21T21:10:40.955296+00:00"
+    "fetched_at": "2026-10-22T21:08:54.808810+00:00"
   },
   {
     "card_name": "未開封ギャラドスごっこピカチュウ",
@@ -258,7 +744,7 @@
     "buy_price": 2000000,
     "sell_price": null,
     "source_site": "フルコンプ秋葉原店",
-    "fetched_at": "2026-10-21T21:10:40.955296+00:00"
+    "fetched_at": "2026-10-22T21:08:54.808810+00:00"
   },
   {
     "card_name": "コイキングごっこピカチュウ",
@@ -267,7 +753,7 @@
     "buy_price": 1000000,
     "sell_price": null,
     "source_site": "フルコンプ秋葉原店",
-    "fetched_at": "2026-10-21T21:10:40.955296+00:00"
+    "fetched_at": "2026-10-22T21:08:54.808810+00:00"
   },
   {
     "card_name": "サンダースVMAX",
@@ -276,7 +762,7 @@
     "buy_price": 550000,
     "sell_price": null,
     "source_site": "フルコンプ秋葉原店",
-    "fetched_at": "2026-10-21T21:10:40.955296+00:00"
+    "fetched_at": "2026-10-22T21:08:54.808810+00:00"
   },
   {
     "card_name": "スカル団ごっこピカチュウ",
@@ -285,7 +771,7 @@
     "buy_price": 1000000,
     "sell_price": null,
     "source_site": "フルコンプ秋葉原店",
-    "fetched_at": "2026-10-21T21:10:40.955296+00:00"
+    "fetched_at": "2026-10-22T21:08:54.808810+00:00"
   },
   {
     "card_name": "未開封スカル団ごっこピカチュウ",
@@ -294,7 +780,7 @@
     "buy_price": 1300000,
     "sell_price": null,
     "source_site": "フルコンプ秋葉原店",
-    "fetched_at": "2026-10-21T21:10:40.955296+00:00"
+    "fetched_at": "2026-10-22T21:08:54.808810+00:00"
   },
   {
     "card_name": "ゼクロムGX",
@@ -303,7 +789,7 @@
     "buy_price": 2000000,
     "sell_price": null,
     "source_site": "フルコンプ秋葉原店",
-    "fetched_at": "2026-10-21T21:10:40.955296+00:00"
+    "fetched_at": "2026-10-22T21:08:54.808810+00:00"
   },
   {
     "card_name": "ピカチュウ",
@@ -312,7 +798,7 @@
     "buy_price": 720000,
     "sell_price": null,
     "source_site": "フルコンプ秋葉原店",
-    "fetched_at": "2026-10-21T21:10:40.955296+00:00"
+    "fetched_at": "2026-10-22T21:08:54.808810+00:00"
   },
   {
     "card_name": "ピカチュウ",
@@ -321,7 +807,7 @@
     "buy_price": 1200000,
     "sell_price": null,
     "source_site": "フルコンプ秋葉原店",
-    "fetched_at": "2026-10-21T21:10:40.955296+00:00"
+    "fetched_at": "2026-10-22T21:08:54.808810+00:00"
   },
   {
     "card_name": "ピカチュウ",
@@ -330,7 +816,7 @@
     "buy_price": 3000000,
     "sell_price": null,
     "source_site": "フルコンプ秋葉原店",
-    "fetched_at": "2026-10-21T21:10:40.955296+00:00"
+    "fetched_at": "2026-10-22T21:08:54.808810+00:00"
   },
   {
     "card_name": "ピカチュウ",
@@ -339,7 +825,7 @@
     "buy_price": 1000000,
     "sell_price": null,
     "source_site": "フルコンプ秋葉原店",
-    "fetched_at": "2026-10-21T21:10:40.955296+00:00"
+    "fetched_at": "2026-10-22T21:08:54.808810+00:00"
   },
   {
     "card_name": "ポンチョを着たピカチュウ",
@@ -348,7 +834,7 @@
     "buy_price": 1500000,
     "sell_price": null,
     "source_site": "フルコンプ秋葉原店",
-    "fetched_at": "2026-10-21T21:10:40.955296+00:00"
+    "fetched_at": "2026-10-22T21:08:54.808810+00:00"
   },
   {
     "card_name": "ポンチョを着たピカチュウ",
@@ -357,7 +843,7 @@
     "buy_price": 1200000,
     "sell_price": null,
     "source_site": "フルコンプ秋葉原店",
-    "fetched_at": "2026-10-21T21:10:40.955296+00:00"
+    "fetched_at": "2026-10-22T21:08:54.808810+00:00"
   },
   {
     "card_name": "ポンチョを着たピカチュウ",
@@ -366,7 +852,7 @@
     "buy_price": 1000000,
     "sell_price": null,
     "source_site": "フルコンプ秋葉原店",
-    "fetched_at": "2026-10-21T21:10:40.955296+00:00"
+    "fetched_at": "2026-10-22T21:08:54.808810+00:00"
   },
   {
     "card_name": "ポンチョを着たピカチュウ",
@@ -375,7 +861,7 @@
     "buy_price": 1000000,
     "sell_price": null,
     "source_site": "フルコンプ秋葉原店",
-    "fetched_at": "2026-10-21T21:10:40.955296+00:00"
+    "fetched_at": "2026-10-22T21:08:54.808810+00:00"
   },
   {
     "card_name": "ポンチョを着たピカチュウ",
@@ -384,7 +870,7 @@
     "buy_price": 700000,
     "sell_price": null,
     "source_site": "フルコンプ秋葉原店",
-    "fetched_at": "2026-10-21T21:10:40.955296+00:00"
+    "fetched_at": "2026-10-22T21:08:54.808810+00:00"
   },
   {
     "card_name": "ポンチョを着たピカチュウ",
@@ -393,7 +879,7 @@
     "buy_price": 600000,
     "sell_price": null,
     "source_site": "フルコンプ秋葉原店",
-    "fetched_at": "2026-10-21T21:10:40.955296+00:00"
+    "fetched_at": "2026-10-22T21:08:54.808810+00:00"
   },
   {
     "card_name": "未開封ポンチョを着たピカチュウ",
@@ -402,7 +888,7 @@
     "buy_price": 2000000,
     "sell_price": null,
     "source_site": "フルコンプ秋葉原店",
-    "fetched_at": "2026-10-21T21:10:40.955296+00:00"
+    "fetched_at": "2026-10-22T21:08:54.808810+00:00"
   },
   {
     "card_name": "未開封ポンチョを着たピカチュウ",
@@ -411,7 +897,7 @@
     "buy_price": 1500000,
     "sell_price": null,
     "source_site": "フルコンプ秋葉原店",
-    "fetched_at": "2026-10-21T21:10:40.955296+00:00"
+    "fetched_at": "2026-10-22T21:08:54.808810+00:00"
   },
   {
     "card_name": "未開封ポンチョを着たピカチュウ",
@@ -420,7 +906,7 @@
     "buy_price": 2000000,
     "sell_price": null,
     "source_site": "フルコンプ秋葉原店",
-    "fetched_at": "2026-10-21T21:10:40.955296+00:00"
+    "fetched_at": "2026-10-22T21:08:54.808810+00:00"
   },
   {
     "card_name": "マリオピカチュウ",
@@ -429,7 +915,7 @@
     "buy_price": 800000,
     "sell_price": null,
     "source_site": "フルコンプ秋葉原店",
-    "fetched_at": "2026-10-21T21:10:40.955296+00:00"
+    "fetched_at": "2026-10-22T21:08:54.808810+00:00"
   },
   {
     "card_name": "マリオピカチュウ",
@@ -438,7 +924,7 @@
     "buy_price": 2500000,
     "sell_price": null,
     "source_site": "フルコンプ秋葉原店",
-    "fetched_at": "2026-10-21T21:10:40.955296+00:00"
+    "fetched_at": "2026-10-22T21:08:54.808810+00:00"
   },
   {
     "card_name": "未開封マリオピカチュウ",
@@ -447,7 +933,7 @@
     "buy_price": 3500000,
     "sell_price": null,
     "source_site": "フルコンプ秋葉原店",
-    "fetched_at": "2026-10-21T21:10:40.955296+00:00"
+    "fetched_at": "2026-10-22T21:08:54.808810+00:00"
   },
   {
     "card_name": "メガトウキョーのピカチュウ",
@@ -456,7 +942,7 @@
     "buy_price": 1000000,
     "sell_price": null,
     "source_site": "フルコンプ秋葉原店",
-    "fetched_at": "2026-10-21T21:10:40.955296+00:00"
+    "fetched_at": "2026-10-22T21:08:54.808810+00:00"
   },
   {
     "card_name": "ルイージピカチュウ",
@@ -465,7 +951,7 @@
     "buy_price": 500000,
     "sell_price": null,
     "source_site": "フルコンプ秋葉原店",
-    "fetched_at": "2026-10-21T21:10:40.955296+00:00"
+    "fetched_at": "2026-10-22T21:08:54.808810+00:00"
   },
   {
     "card_name": "ルイージピカチュウ",
@@ -474,7 +960,7 @@
     "buy_price": 1300000,
     "sell_price": null,
     "source_site": "フルコンプ秋葉原店",
-    "fetched_at": "2026-10-21T21:10:40.955296+00:00"
+    "fetched_at": "2026-10-22T21:08:54.808810+00:00"
   },
   {
     "card_name": "未開封ルイージピカチュウ",
@@ -483,7 +969,7 @@
     "buy_price": 2000000,
     "sell_price": null,
     "source_site": "フルコンプ秋葉原店",
-    "fetched_at": "2026-10-21T21:10:40.955296+00:00"
+    "fetched_at": "2026-10-22T21:08:54.808810+00:00"
   },
   {
     "card_name": "ミミッキュ",
@@ -492,7 +978,7 @@
     "buy_price": 1000000,
     "sell_price": null,
     "source_site": "フルコンプ秋葉原店",
-    "fetched_at": "2026-10-21T21:10:40.955296+00:00"
+    "fetched_at": "2026-10-22T21:08:54.808810+00:00"
   },
   {
     "card_name": "未開封ミミッキュ",
@@ -501,7 +987,7 @@
     "buy_price": 1200000,
     "sell_price": null,
     "source_site": "フルコンプ秋葉原店",
-    "fetched_at": "2026-10-21T21:10:40.955296+00:00"
+    "fetched_at": "2026-10-22T21:08:54.808810+00:00"
   },
   {
     "card_name": "ミュウツーGX",
@@ -510,7 +996,7 @@
     "buy_price": 1000000,
     "sell_price": null,
     "source_site": "フルコンプ秋葉原店",
-    "fetched_at": "2026-10-21T21:10:40.955296+00:00"
+    "fetched_at": "2026-10-22T21:08:54.808810+00:00"
   },
   {
     "card_name": "ミュウツーEX(XY-P)PROMO",
@@ -519,7 +1005,7 @@
     "buy_price": 500000,
     "sell_price": null,
     "source_site": "フルコンプ秋葉原店",
-    "fetched_at": "2026-10-21T21:10:40.955296+00:00"
+    "fetched_at": "2026-10-22T21:08:54.808810+00:00"
   },
   {
     "card_name": "ブラッキー",
@@ -528,7 +1014,7 @@
     "buy_price": 800000,
     "sell_price": null,
     "source_site": "フルコンプ秋葉原店",
-    "fetched_at": "2026-10-21T21:10:40.955296+00:00"
+    "fetched_at": "2026-10-22T21:08:54.808810+00:00"
   },
   {
     "card_name": "レックウザVMAX",
@@ -537,7 +1023,7 @@
     "buy_price": 620000,
     "sell_price": null,
     "source_site": "フルコンプ秋葉原店",
-    "fetched_at": "2026-10-21T21:10:40.955296+00:00"
+    "fetched_at": "2026-10-22T21:08:54.808810+00:00"
   },
   {
     "card_name": "ギラティナEX",
@@ -546,7 +1032,7 @@
     "buy_price": 700000,
     "sell_price": null,
     "source_site": "フルコンプ秋葉原店",
-    "fetched_at": "2026-10-21T21:10:40.955296+00:00"
+    "fetched_at": "2026-10-22T21:08:54.808810+00:00"
   },
   {
     "card_name": "レックウザEX",
@@ -555,7 +1041,7 @@
     "buy_price": 1500000,
     "sell_price": null,
     "source_site": "フルコンプ秋葉原店",
-    "fetched_at": "2026-10-21T21:10:40.955296+00:00"
+    "fetched_at": "2026-10-22T21:08:54.808810+00:00"
   },
   {
     "card_name": "アセロラ",
@@ -564,7 +1050,7 @@
     "buy_price": 1000000,
     "sell_price": null,
     "source_site": "フルコンプ秋葉原店",
-    "fetched_at": "2026-10-21T21:10:40.955296+00:00"
+    "fetched_at": "2026-10-22T21:08:54.808810+00:00"
   },
   {
     "card_name": "未開封サカキの計画",
@@ -573,7 +1059,7 @@
     "buy_price": 1000000,
     "sell_price": null,
     "source_site": "フルコンプ秋葉原店",
-    "fetched_at": "2026-10-21T21:10:40.955296+00:00"
+    "fetched_at": "2026-10-22T21:08:54.808810+00:00"
   },
   {
     "card_name": "サカキの計画(277/XY-P)※サカキ＆ペルシアン",
@@ -582,7 +1068,7 @@
     "buy_price": 700000,
     "sell_price": null,
     "source_site": "フルコンプ秋葉原店",
-    "fetched_at": "2026-10-21T21:10:40.955296+00:00"
+    "fetched_at": "2026-10-22T21:08:54.808810+00:00"
   },
   {
     "card_name": "リーリエ",
@@ -591,7 +1077,7 @@
     "buy_price": 550000,
     "sell_price": null,
     "source_site": "フルコンプ秋葉原店",
-    "fetched_at": "2026-10-21T21:10:40.955296+00:00"
+    "fetched_at": "2026-10-22T21:08:54.808810+00:00"
   },
   {
     "card_name": "未開封ロケット団参上!",
@@ -600,7 +1086,7 @@
     "buy_price": 1000000,
     "sell_price": null,
     "source_site": "フルコンプ秋葉原店",
-    "fetched_at": "2026-10-21T21:10:40.955296+00:00"
+    "fetched_at": "2026-10-22T21:08:54.808810+00:00"
   },
   {
     "card_name": "ロケット団参上！(278/XY-P)ムサシ＆コジロウ＆ニャース",
@@ -609,6 +1095,6 @@
     "buy_price": 700000,
     "sell_price": null,
     "source_site": "フルコンプ秋葉原店",
-    "fetched_at": "2026-10-21T21:10:40.955296+00:00"
+    "fetched_at": "2026-10-22T21:08:54.808810+00:00"
   }
 ]
